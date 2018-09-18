@@ -1,3 +1,2 @@
 http://www.melonydi.cn/jetbrains-license/
 http://www.melonydi.cn/linux-daemon/
-http://www.melonydi.cn/spring-cache/
