@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="原文：https://blog.csdn.net/fw0124/article/details/41013333  关于SSL/TLS/JSSE的介绍：1）SSL/TLS协议运行机制2）图解SSL/TLS协议3）使用wireshark观察SSL/TLS握手过程4）SSL/TLS的Java实现–JSSE #（一）使用keytool创建密钥库 使用双向认证的SSL/TLS协议通信，客户端和服务器端都要">
+<meta name="description" content="原文：https://blog.csdn.net/fw0124/article/details/41013333  关于SSL/TLS/JSSE的介绍：1）SSL/TLS协议运行机制2）图解SSL/TLS协议3）使用wireshark观察SSL/TLS握手过程4）SSL/TLS的Java实现–JSSE （一）使用keytool创建密钥库使用双向认证的SSL/TLS协议通信，客户端和服务器端都要设置">
 <meta name="keywords" content="转载, SSL, keytool">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java-JSSE-SSL&#x2F;TLS编程代码实例-双向认证">
 <meta property="og:url" content="http://www.melonydi.cn/jsse-ssl/index.html">
 <meta property="og:site_name" content="彭启骏的个人博客">
-<meta property="og:description" content="原文：https://blog.csdn.net/fw0124/article/details/41013333  关于SSL/TLS/JSSE的介绍：1）SSL/TLS协议运行机制2）图解SSL/TLS协议3）使用wireshark观察SSL/TLS握手过程4）SSL/TLS的Java实现–JSSE #（一）使用keytool创建密钥库 使用双向认证的SSL/TLS协议通信，客户端和服务器端都要">
+<meta property="og:description" content="原文：https://blog.csdn.net/fw0124/article/details/41013333  关于SSL/TLS/JSSE的介绍：1）SSL/TLS协议运行机制2）图解SSL/TLS协议3）使用wireshark观察SSL/TLS握手过程4）SSL/TLS的Java实现–JSSE （一）使用keytool创建密钥库使用双向认证的SSL/TLS协议通信，客户端和服务器端都要设置">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-02T16:37:14.663Z">
+<meta property="og:updated_time" content="2018-12-02T16:40:12.286Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java-JSSE-SSL&#x2F;TLS编程代码实例-双向认证">
-<meta name="twitter:description" content="原文：https://blog.csdn.net/fw0124/article/details/41013333  关于SSL/TLS/JSSE的介绍：1）SSL/TLS协议运行机制2）图解SSL/TLS协议3）使用wireshark观察SSL/TLS握手过程4）SSL/TLS的Java实现–JSSE #（一）使用keytool创建密钥库 使用双向认证的SSL/TLS协议通信，客户端和服务器端都要">
+<meta name="twitter:description" content="原文：https://blog.csdn.net/fw0124/article/details/41013333  关于SSL/TLS/JSSE的介绍：1）SSL/TLS协议运行机制2）图解SSL/TLS协议3）使用wireshark观察SSL/TLS握手过程4）SSL/TLS的Java实现–JSSE （一）使用keytool创建密钥库使用双向认证的SSL/TLS协议通信，客户端和服务器端都要设置">
 
 
 
@@ -320,7 +320,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-12-03T00:37:14+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-12-03T00:40:12+08:00">
                 2018-12-03
               </time>
             
@@ -430,8 +430,7 @@
       
         <p>原文：<a href="https://blog.csdn.net/fw0124/article/details/41013333" target="_blank" rel="noopener">https://blog.csdn.net/fw0124/article/details/41013333</a> </p>
 <p>关于SSL/TLS/JSSE的介绍：<br><a href="http://blog.csdn.net/fw0124/article/details/40873253" target="_blank" rel="noopener">1）SSL/TLS协议运行机制</a><br><a href="http://blog.csdn.net/fw0124/article/details/40875629" target="_blank" rel="noopener">2）图解SSL/TLS协议</a><br><a href="http://blog.csdn.net/fw0124/article/details/40983787" target="_blank" rel="noopener">3）使用wireshark观察SSL/TLS握手过程</a><br><a href="http://blog.csdn.net/fw0124/article/details/40889167" target="_blank" rel="noopener">4）SSL/TLS的Java实现–JSSE</a></p>
-<p>#（一）使用keytool创建密钥库</p>
-<p>使用双向认证的SSL/TLS协议通信，客户端和服务器端都要设置用于证实自己身份的安全证书，并且还要设置信任对方的哪些安全证书。<br>理论上一共需要准备四个文件，两个keystore文件和两个truststore文件。<br>通信双方分别拥有一个keystore和一个truststore，<strong>keystore用于存放自己的密钥和公钥，truststore用于存放所有需要信任方的公钥。</strong></p>
+<h1 id="（一）使用keytool创建密钥库"><a href="#（一）使用keytool创建密钥库" class="headerlink" title="（一）使用keytool创建密钥库"></a>（一）使用keytool创建密钥库</h1><p>使用双向认证的SSL/TLS协议通信，客户端和服务器端都要设置用于证实自己身份的安全证书，并且还要设置信任对方的哪些安全证书。<br>理论上一共需要准备四个文件，两个keystore文件和两个truststore文件。<br>通信双方分别拥有一个keystore和一个truststore，<strong>keystore用于存放自己的密钥和公钥，truststore用于存放所有需要信任方的公钥。</strong></p>
 <p>首先使用JDK自带的keytool工具来生成keystore和truststore。这里使用的Java版本是1.7。<br>1）创建server的keystore文件，生成server的公钥/私钥密钥对。需要指定keystore的密码(storepass)和密钥对的密码(keypass)。<br><strong>访问keystore需要storepass。访问密钥对需要keypass。</strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">~ keytool -genkey -alias catserver -keyalg rsa -keysize 1024 -sigalg sha256withrsa -keypass catserver -keystore /tmp/catserver.keystore -storepass catserverks</span><br><span class="line">您的名字与姓氏是什么?</span><br><span class="line">  [Unknown]:  cat</span><br><span class="line">您的组织单位名称是什么?</span><br><span class="line">  [Unknown]:  cat</span><br><span class="line">您的组织名称是什么?</span><br><span class="line">  [Unknown]:  cat</span><br><span class="line">您所在的城市或区域名称是什么?</span><br><span class="line">  [Unknown]:  cat</span><br><span class="line">您所在的省/市/自治区名称是什么?</span><br><span class="line">  [Unknown]:  cat</span><br><span class="line">该单位的双字母国家/地区代码是什么?</span><br><span class="line">  [Unknown]:  ct</span><br><span class="line">CN=cat, OU=cat, O=cat, L=cat, ST=cat, C=ct是否正确?</span><br><span class="line">  [否]:  y</span><br><span class="line"> </span><br><span class="line">Warning:</span><br><span class="line">JKS 密钥库使用专用格式。建议使用 "keytool -importkeystore -srckeystore /tmp/catserver.keystore -destkeystore /tmp/catserver.keystore -deststoretype pkcs12" 迁移到行业标准格式 PKCS12。</span><br></pre></td></tr></table></figure>
 <p>2）创建client的keystore文件。同样需要指定keystore的密码和密钥对的密码。</p>
@@ -699,7 +698,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#（二）server端处理流程和代码"><span class="nav-number">1.</span> <span class="nav-text">（二）server端处理流程和代码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#（三）client端处理流程和代码"><span class="nav-number">2.</span> <span class="nav-text">（三）client端处理流程和代码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#（四）使用Openssl进行证书签名"><span class="nav-number">3.</span> <span class="nav-text">（四）使用Openssl进行证书签名</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#（一）使用keytool创建密钥库"><span class="nav-number">1.</span> <span class="nav-text">（一）使用keytool创建密钥库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#（二）server端处理流程和代码"><span class="nav-number">2.</span> <span class="nav-text">（二）server端处理流程和代码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#（三）client端处理流程和代码"><span class="nav-number">3.</span> <span class="nav-text">（三）client端处理流程和代码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#（四）使用Openssl进行证书签名"><span class="nav-number">4.</span> <span class="nav-text">（四）使用Openssl进行证书签名</span></a></li></ol></div>
             
 
           </div>
