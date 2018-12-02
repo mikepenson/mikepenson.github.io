@@ -4,19 +4,19 @@
 
     
   <url>
-    <loc>http://www.melonydi.cn/keytool/</loc>
-    <lastmod>2018-12-02T15:40:11.256Z</lastmod>
+    <loc>http://www.melonydi.cn/jsse-ssl/</loc>
+    <lastmod>2018-12-02T16:37:14.663Z</lastmod>
     <data>
         <display>
-        <title>使用keytool创建秘钥库</title>
+        <title>Java-JSSE-SSL/TLS编程代码实例-双向认证</title>
         <pubTime>2018-09-01T16:00:47.000Z</pubTime>
         
-        <tag>转载</tag>
+        <tag>转载, SSL, keytool</tag>
          
          
            
              
-              <breadCrumb title="Linux" url="http://www.melonydi.cn/categories/Linux/"/>
+              <breadCrumb title="安全" url="http://www.melonydi.cn/categories/%E5%AE%89%E5%85%A8/"/>
           
         </display>
     </data>
