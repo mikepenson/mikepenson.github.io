@@ -81,22 +81,22 @@
 
 
 
-<meta name="description" content="环境CentOS 云主机：  Java、Tomcat 本地： Java、HTTP Client Keytool创建密钥库 创建server端的keystore文件， 生成server的公钥/私钥的密钥对。指定keystore的密码（-storepass catserverks）、密钥对的密码（-keypass catserver）。   服务端的密钥库参数“CN”必须与服务端的公网IP一致， 否则">
+<meta name="description" content="环境CentOS 云主机：  Java、Tomcat 本地： Java、HTTP Client Keytool创建密钥库1、 创建server端的keystore文件， 生成server的公钥/私钥的密钥对。指定keystore的密码（-storepass catserverks）、密钥对的密码（-keypass catserver）。   服务端的密钥库参数“CN”必须与服务端的公网IP一致，">
 <meta name="keywords" content="安全">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java tomcat 搭建SSL双向认证以及httpclient代码">
 <meta property="og:url" content="http://www.melonydi.cn/tomcat-ssl-two-way-auth/index.html">
 <meta property="og:site_name" content="彭启骏的个人博客">
-<meta property="og:description" content="环境CentOS 云主机：  Java、Tomcat 本地： Java、HTTP Client Keytool创建密钥库 创建server端的keystore文件， 生成server的公钥/私钥的密钥对。指定keystore的密码（-storepass catserverks）、密钥对的密码（-keypass catserver）。   服务端的密钥库参数“CN”必须与服务端的公网IP一致， 否则">
+<meta property="og:description" content="环境CentOS 云主机：  Java、Tomcat 本地： Java、HTTP Client Keytool创建密钥库1、 创建server端的keystore文件， 生成server的公钥/私钥的密钥对。指定keystore的密码（-storepass catserverks）、密钥对的密码（-keypass catserver）。   服务端的密钥库参数“CN”必须与服务端的公网IP一致，">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://www.melonydi.cn/tomcat-ssl-two-way-auth/tomcat-ssl-two-way-auth/run_httpclient_code.png">
 <meta property="og:image" content="http://www.melonydi.cn/tomcat-ssl-two-way-auth/capture_two_way.png">
 <meta property="og:image" content="http://www.melonydi.cn/tomcat-ssl-two-way-auth/run_client_code_one_way.png">
 <meta property="og:image" content="http://www.melonydi.cn/tomcat-ssl-two-way-auth/capture_one_way.png">
-<meta property="og:updated_time" content="2018-12-09T17:26:11.870Z">
+<meta property="og:updated_time" content="2018-12-09T17:31:57.718Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java tomcat 搭建SSL双向认证以及httpclient代码">
-<meta name="twitter:description" content="环境CentOS 云主机：  Java、Tomcat 本地： Java、HTTP Client Keytool创建密钥库 创建server端的keystore文件， 生成server的公钥/私钥的密钥对。指定keystore的密码（-storepass catserverks）、密钥对的密码（-keypass catserver）。   服务端的密钥库参数“CN”必须与服务端的公网IP一致， 否则">
+<meta name="twitter:description" content="环境CentOS 云主机：  Java、Tomcat 本地： Java、HTTP Client Keytool创建密钥库1、 创建server端的keystore文件， 生成server的公钥/私钥的密钥对。指定keystore的密码（-storepass catserverks）、密钥对的密码（-keypass catserver）。   服务端的密钥库参数“CN”必须与服务端的公网IP一致，">
 <meta name="twitter:image" content="http://www.melonydi.cn/tomcat-ssl-two-way-auth/tomcat-ssl-two-way-auth/run_httpclient_code.png">
 
 
@@ -325,7 +325,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-12-10T01:26:11+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-12-10T01:31:57+08:00">
                 2018-12-10
               </time>
             
@@ -413,42 +413,26 @@
       
         <h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><p>CentOS 云主机：  Java、Tomcat</p>
 <p>本地： Java、HTTP Client</p>
-<h1 id="Keytool创建密钥库"><a href="#Keytool创建密钥库" class="headerlink" title="Keytool创建密钥库"></a>Keytool创建密钥库</h1><ol>
-<li><p>创建server端的keystore文件， 生成server的公钥/私钥的密钥对。指定keystore的密码（-storepass catserverks）、密钥对的密码（-keypass catserver）。</p>
+<h1 id="Keytool创建密钥库"><a href="#Keytool创建密钥库" class="headerlink" title="Keytool创建密钥库"></a>Keytool创建密钥库</h1><p>1、 创建server端的keystore文件， 生成server的公钥/私钥的密钥对。指定keystore的密码（-storepass catserverks）、密钥对的密码（-keypass catserver）。</p>
 <blockquote>
 <p> 服务端的密钥库参数“CN”必须与服务端的公网IP一致， 否则会报错；客户端可以不用</p>
 </blockquote>
-</li>
-</ol>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">keytool -genkey -alias catserver -keyalg rsa -keysize 1024 -sigalg sha256withrsa -keypass catserver -keystore /tmp/catserver.keystore -storepass catserverks</span><br><span class="line">您的名字与姓氏是什么?</span><br><span class="line">  [Unknown]:  你的公网IP</span><br><span class="line">您的组织单位名称是什么?</span><br><span class="line">  [Unknown]:  cat</span><br><span class="line">您的组织名称是什么?</span><br><span class="line">  [Unknown]:  cat</span><br><span class="line">您所在的城市或区域名称是什么?</span><br><span class="line">  [Unknown]:  cat</span><br><span class="line">您所在的省/市/自治区名称是什么?</span><br><span class="line">  [Unknown]:  cat</span><br><span class="line">该单位的双字母国家/地区代码是什么?</span><br><span class="line">  [Unknown]:  ct</span><br><span class="line">CN=cat, OU=cat, O=cat, L=cat, ST=cat, C=ct是否正确?</span><br><span class="line">  [否]:  y</span><br></pre></td></tr></table></figure>
-<ol>
-<li>创建client端的keystore文件， 生成公私钥。指定client端keystore的密码（-storepass foxclientks）、密钥对的密码（-keypass foxclient）。</li>
-</ol>
+<p>2、 创建client端的keystore文件， 生成公私钥。指定client端keystore的密码（-storepass foxclientks）、密钥对的密码（-keypass foxclient）。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -genkey -alias foxclient -keyalg dsa -keysize 512 -sigalg sha1withdsa -keypass foxclient -keystore /tmp/foxclient.keystore -storepass foxclientks</span><br></pre></td></tr></table></figure>
-<ol>
-<li>从server的keystore文件导出server的证书， 包括server的公钥</li>
-</ol>
+<p>3、 从server的keystore文件导出server的证书， 包括server的公钥</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">~ keytool -export -alias catserver -keystore /tmp/catserver.keystore -storepass catserverks -file /tmp/catserver.cer</span><br><span class="line">存储在文件 &lt;/tmp/catserver.cer&gt; 中的证书</span><br></pre></td></tr></table></figure>
-<ol>
-<li>从client的keystore文件导出client的证书， 包括client的公钥</li>
-</ol>
+<p>4、 从client的keystore文件导出client的证书， 包括client的公钥</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">keytool -export -alias foxclient -keystore /tmp/foxclient.keystore -storepass foxclientks -file /tmp/foxclient.cer</span><br><span class="line">存储在文件 &lt;/tmp/foxclient.cer&gt; 中的证书</span><br></pre></td></tr></table></figure>
-<ol>
-<li><p>创建server的truststore文件并导入client的证书（其中包括client的公钥）。</p>
+<p>5、 创建server的truststore文件并导入client的证书（其中包括client的公钥）。</p>
 <blockquote>
 <p>当读取truststore时， storepass不是必须的。</p>
 <p><a href="http://bayou.io/release/0.9/javadoc/bayou/ssl/SslConf.html#trustStorePass-java.lang.String-" target="_blank" rel="noopener">http://bayou.io/release/0.9/javadoc/bayou/ssl/SslConf.html#trustStorePass-java.lang.String-</a></p>
 </blockquote>
-</li>
-</ol>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -import -alias foxclient -keystore /tmp/catservertrust.keystore -storepass catservertrustks -file /tmp/foxclient.cer</span><br></pre></td></tr></table></figure>
-<ol>
-<li>创建client的truststore文件并导入server的证书（其中包括server的公钥）。</li>
-</ol>
+<p>6、 创建client的truststore文件并导入server的证书（其中包括server的公钥）。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -import -alias catserver -keystore /tmp/foxclienttrust.keystore -storepass foxclienttrustks -file /tmp/catserver.cer</span><br></pre></td></tr></table></figure>
-<ol>
-<li>客户端keystore、truststore导到本地</li>
-</ol>
+<p>7、  客户端keystore、truststore导到本地</p>
 <h1 id="配置Tomcat"><a href="#配置Tomcat" class="headerlink" title="配置Tomcat"></a>配置Tomcat</h1><p>编辑${catalina.base}/conf/server.xml<br>找到Connector port=”8443”的标签，取消注释，并修改成如下：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;Connector SSLEnabled="true" acceptCount="100" clientAuth="true"</span><br><span class="line">disableUploadTimeout="true" enableLookups="false" maxThreads="25"</span><br><span class="line">port="8443" protocol="org.apache.coyote.http11.Http11NioProtocol" scheme="https" secure="true" sslProtocol="TLS" </span><br><span class="line">keystoreFile="/root/cert/catserver.keystore" keystorePass="catserverks" keyPass="catserver"</span><br><span class="line">truststoreFile="/root/cert/catservertrust.keystore" truststorePass="catservertrustks"/&gt;</span><br><span class="line"></span><br><span class="line">备注：</span><br><span class="line">clientAuth： 是否认证client</span><br><span class="line">keystoreFile：指定服务器密钥库，可以配置成绝对路径，如“/opt/web/ssl/server.keystore”。</span><br><span class="line">keystorePass：密钥库生成时的密码</span><br><span class="line">keyPass: 密钥对的密码</span><br><span class="line">truststoreFile：受信任密钥库，和密钥库相同即可</span><br><span class="line">truststorePass：受信任密钥库密码</span><br></pre></td></tr></table></figure>
 <h1 id="演示代码"><a href="#演示代码" class="headerlink" title="演示代码"></a>演示代码</h1><p>GitHub地址： <a href="https://github.com/mikepenson/SSLServlet" target="_blank" rel="noopener">https://github.com/mikepenson/SSLServlet</a></p>
