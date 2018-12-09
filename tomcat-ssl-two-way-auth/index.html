@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="彭启骏,彭启骏的个人博客,彭启骏技术交流" />
+  <meta name="keywords" content="安全," />
 
 
 
@@ -81,17 +81,23 @@
 
 
 
-<meta name="description" content="#">
+<meta name="description" content="环境CentOS 云主机：  Java、Tomcat 本地： Java、HTTP Client Keytool创建密钥库 创建server端的keystore文件， 生成server的公钥/私钥的密钥对。指定keystore的密码（-storepass catserverks）、密钥对的密码（-keypass catserver）。   服务端的密钥库参数“CN”必须与服务端的公网IP一致， 否则">
+<meta name="keywords" content="安全">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java tomcat 搭建SSL双向认证以及httpclient代码">
 <meta property="og:url" content="http://www.melonydi.cn/tomcat-ssl-two-way-auth/index.html">
 <meta property="og:site_name" content="彭启骏的个人博客">
-<meta property="og:description" content="#">
+<meta property="og:description" content="环境CentOS 云主机：  Java、Tomcat 本地： Java、HTTP Client Keytool创建密钥库 创建server端的keystore文件， 生成server的公钥/私钥的密钥对。指定keystore的密码（-storepass catserverks）、密钥对的密码（-keypass catserver）。   服务端的密钥库参数“CN”必须与服务端的公网IP一致， 否则">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-09T10:12:27.303Z">
+<meta property="og:image" content="http://www.melonydi.cn/tomcat-ssl-two-way-auth/tomcat-ssl-two-way-auth/run_httpclient_code.png">
+<meta property="og:image" content="http://www.melonydi.cn/tomcat-ssl-two-way-auth/capture_two_way.png">
+<meta property="og:image" content="http://www.melonydi.cn/tomcat-ssl-two-way-auth/run_client_code_one_way.png">
+<meta property="og:image" content="http://www.melonydi.cn/tomcat-ssl-two-way-auth/capture_one_way.png">
+<meta property="og:updated_time" content="2018-12-09T17:26:11.870Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java tomcat 搭建SSL双向认证以及httpclient代码">
-<meta name="twitter:description" content="#">
+<meta name="twitter:description" content="环境CentOS 云主机：  Java、Tomcat 本地： Java、HTTP Client Keytool创建密钥库 创建server端的keystore文件， 生成server的公钥/私钥的密钥对。指定keystore的密码（-storepass catserverks）、密钥对的密码（-keypass catserver）。   服务端的密钥库参数“CN”必须与服务端的公网IP一致， 否则">
+<meta name="twitter:image" content="http://www.melonydi.cn/tomcat-ssl-two-way-auth/tomcat-ssl-two-way-auth/run_httpclient_code.png">
 
 
 
@@ -319,8 +325,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-12-09T18:12:27+08:00">
-                2018-12-09
+              <time title="更新于" itemprop="dateModified" datetime="2018-12-10T01:26:11+08:00">
+                2018-12-10
               </time>
             
           </span>
@@ -368,7 +374,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  0
+                  2,135
                 </span>
               
 
@@ -384,7 +390,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  11
                 </span>
               
             </div>
@@ -405,7 +411,75 @@
       
 
       
-        <p>#</p>
+        <h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><p>CentOS 云主机：  Java、Tomcat</p>
+<p>本地： Java、HTTP Client</p>
+<h1 id="Keytool创建密钥库"><a href="#Keytool创建密钥库" class="headerlink" title="Keytool创建密钥库"></a>Keytool创建密钥库</h1><ol>
+<li><p>创建server端的keystore文件， 生成server的公钥/私钥的密钥对。指定keystore的密码（-storepass catserverks）、密钥对的密码（-keypass catserver）。</p>
+<blockquote>
+<p> 服务端的密钥库参数“CN”必须与服务端的公网IP一致， 否则会报错；客户端可以不用</p>
+</blockquote>
+</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">keytool -genkey -alias catserver -keyalg rsa -keysize 1024 -sigalg sha256withrsa -keypass catserver -keystore /tmp/catserver.keystore -storepass catserverks</span><br><span class="line">您的名字与姓氏是什么?</span><br><span class="line">  [Unknown]:  你的公网IP</span><br><span class="line">您的组织单位名称是什么?</span><br><span class="line">  [Unknown]:  cat</span><br><span class="line">您的组织名称是什么?</span><br><span class="line">  [Unknown]:  cat</span><br><span class="line">您所在的城市或区域名称是什么?</span><br><span class="line">  [Unknown]:  cat</span><br><span class="line">您所在的省/市/自治区名称是什么?</span><br><span class="line">  [Unknown]:  cat</span><br><span class="line">该单位的双字母国家/地区代码是什么?</span><br><span class="line">  [Unknown]:  ct</span><br><span class="line">CN=cat, OU=cat, O=cat, L=cat, ST=cat, C=ct是否正确?</span><br><span class="line">  [否]:  y</span><br></pre></td></tr></table></figure>
+<ol>
+<li>创建client端的keystore文件， 生成公私钥。指定client端keystore的密码（-storepass foxclientks）、密钥对的密码（-keypass foxclient）。</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -genkey -alias foxclient -keyalg dsa -keysize 512 -sigalg sha1withdsa -keypass foxclient -keystore /tmp/foxclient.keystore -storepass foxclientks</span><br></pre></td></tr></table></figure>
+<ol>
+<li>从server的keystore文件导出server的证书， 包括server的公钥</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">~ keytool -export -alias catserver -keystore /tmp/catserver.keystore -storepass catserverks -file /tmp/catserver.cer</span><br><span class="line">存储在文件 &lt;/tmp/catserver.cer&gt; 中的证书</span><br></pre></td></tr></table></figure>
+<ol>
+<li>从client的keystore文件导出client的证书， 包括client的公钥</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">keytool -export -alias foxclient -keystore /tmp/foxclient.keystore -storepass foxclientks -file /tmp/foxclient.cer</span><br><span class="line">存储在文件 &lt;/tmp/foxclient.cer&gt; 中的证书</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>创建server的truststore文件并导入client的证书（其中包括client的公钥）。</p>
+<blockquote>
+<p>当读取truststore时， storepass不是必须的。</p>
+<p><a href="http://bayou.io/release/0.9/javadoc/bayou/ssl/SslConf.html#trustStorePass-java.lang.String-" target="_blank" rel="noopener">http://bayou.io/release/0.9/javadoc/bayou/ssl/SslConf.html#trustStorePass-java.lang.String-</a></p>
+</blockquote>
+</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -import -alias foxclient -keystore /tmp/catservertrust.keystore -storepass catservertrustks -file /tmp/foxclient.cer</span><br></pre></td></tr></table></figure>
+<ol>
+<li>创建client的truststore文件并导入server的证书（其中包括server的公钥）。</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -import -alias catserver -keystore /tmp/foxclienttrust.keystore -storepass foxclienttrustks -file /tmp/catserver.cer</span><br></pre></td></tr></table></figure>
+<ol>
+<li>客户端keystore、truststore导到本地</li>
+</ol>
+<h1 id="配置Tomcat"><a href="#配置Tomcat" class="headerlink" title="配置Tomcat"></a>配置Tomcat</h1><p>编辑${catalina.base}/conf/server.xml<br>找到Connector port=”8443”的标签，取消注释，并修改成如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;Connector SSLEnabled="true" acceptCount="100" clientAuth="true"</span><br><span class="line">disableUploadTimeout="true" enableLookups="false" maxThreads="25"</span><br><span class="line">port="8443" protocol="org.apache.coyote.http11.Http11NioProtocol" scheme="https" secure="true" sslProtocol="TLS" </span><br><span class="line">keystoreFile="/root/cert/catserver.keystore" keystorePass="catserverks" keyPass="catserver"</span><br><span class="line">truststoreFile="/root/cert/catservertrust.keystore" truststorePass="catservertrustks"/&gt;</span><br><span class="line"></span><br><span class="line">备注：</span><br><span class="line">clientAuth： 是否认证client</span><br><span class="line">keystoreFile：指定服务器密钥库，可以配置成绝对路径，如“/opt/web/ssl/server.keystore”。</span><br><span class="line">keystorePass：密钥库生成时的密码</span><br><span class="line">keyPass: 密钥对的密码</span><br><span class="line">truststoreFile：受信任密钥库，和密钥库相同即可</span><br><span class="line">truststorePass：受信任密钥库密码</span><br></pre></td></tr></table></figure>
+<h1 id="演示代码"><a href="#演示代码" class="headerlink" title="演示代码"></a>演示代码</h1><p>GitHub地址： <a href="https://github.com/mikepenson/SSLServlet" target="_blank" rel="noopener">https://github.com/mikepenson/SSLServlet</a></p>
+<p>服务端代码：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br></pre></td><td class="code"><pre><span class="line">1. SSLServlet.java</span><br><span class="line">import javax.servlet.ServletException;</span><br><span class="line">import javax.servlet.http.HttpServlet;</span><br><span class="line">import javax.servlet.http.HttpServletRequest;</span><br><span class="line">import javax.servlet.http.HttpServletResponse;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.PrintWriter;</span><br><span class="line">import java.security.cert.X509Certificate;</span><br><span class="line"></span><br><span class="line">public class SSLServlet extends HttpServlet &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    private static final String ATTR_CER = "javax.servlet.request.X509Certificate";</span><br><span class="line">    private static final String CONTENT_TYPE = "text/plain;charset=UTF-8";</span><br><span class="line">    private static final String DEFAULT_ENCODING = "UTF-8";</span><br><span class="line">    private static final String SCHEME_HTTPS = "https";</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException &#123;</span><br><span class="line">      //  super.doGet(req, resp);</span><br><span class="line">        response.setContentType(CONTENT_TYPE);</span><br><span class="line">        response.setCharacterEncoding(DEFAULT_ENCODING);</span><br><span class="line">        PrintWriter out = response.getWriter();</span><br><span class="line">        out.println("cmd=["+request.getParameter("cmd")+"], data=["+request.getParameter("data")+"]");</span><br><span class="line">        X509Certificate[] certs = (X509Certificate[]) request.getAttribute(ATTR_CER);</span><br><span class="line">        if (certs != null) &#123;</span><br><span class="line">            int count = certs.length;</span><br><span class="line">            out.println("共检测到[" + count + "]个客户端证书");</span><br><span class="line">            for (int i = 0; i &lt; count; i++) &#123;</span><br><span class="line">                out.println("客户端证书 [" + (++i) + "]： ");</span><br><span class="line">                out.println("校验结果：" + verifyCertificate(certs[--i]));</span><br><span class="line">                out.println("证书详细：\r" + certs[i].toString());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            if (SCHEME_HTTPS.equalsIgnoreCase(request.getScheme())) &#123;</span><br><span class="line">                out.println("这是一个HTTPS请求，但是没有可用的客户端证书");</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                out.println("这不是一个HTTPS请求，因此无法获得客户端证书列表 ");</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        out.close();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException &#123;</span><br><span class="line">        doGet(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">    private boolean verifyCertificate(X509Certificate certificate) &#123;</span><br><span class="line">        boolean valid = false;</span><br><span class="line">        try &#123;</span><br><span class="line">            certificate.checkValidity();</span><br><span class="line">            valid=true;</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        return valid;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">2. web.xml</span><br><span class="line"></span><br><span class="line">说明：该演示项目强制使用了SSL，即普通的HTTP请求也会强制重定向为HTTPS请求，配置在最下面，可以去除，这样HTTP和HTTPS都可以访问。</span><br><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line">&lt;web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"</span><br><span class="line">         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"</span><br><span class="line">         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"</span><br><span class="line">         version="4.0"&gt;</span><br><span class="line">    &lt;session-config&gt;</span><br><span class="line">        &lt;session-timeout&gt;30&lt;/session-timeout&gt;</span><br><span class="line">    &lt;/session-config&gt;</span><br><span class="line">    &lt;servlet&gt;</span><br><span class="line">        &lt;servlet-name&gt;SSLServlet&lt;/servlet-name&gt;</span><br><span class="line">        &lt;servlet-class&gt;SSLServlet&lt;/servlet-class&gt;</span><br><span class="line">    &lt;/servlet&gt;</span><br><span class="line">    &lt;servlet-mapping&gt;</span><br><span class="line">        &lt;servlet-name&gt;SSLServlet&lt;/servlet-name&gt;</span><br><span class="line">        &lt;url-pattern&gt;/sslServlet&lt;/url-pattern&gt;</span><br><span class="line">    &lt;/servlet-mapping&gt;</span><br><span class="line">    &lt;!-- 强制SSL配置，即普通的请求也会重定向为SSL请求 --&gt;</span><br><span class="line">    &lt;security-constraint&gt;</span><br><span class="line">        &lt;web-resource-collection&gt;</span><br><span class="line">            &lt;web-resource-name&gt;SSL&lt;/web-resource-name&gt;</span><br><span class="line">            &lt;url-pattern&gt;/*&lt;/url-pattern&gt; &lt;!-- 全站使用SSL --&gt;</span><br><span class="line">        &lt;/web-resource-collection&gt;</span><br><span class="line">        &lt;user-data-constraint&gt;</span><br><span class="line">            &lt;description&gt;SSL required&lt;/description&gt;</span><br><span class="line">            &lt;!-- CONFIDENTIAL: 要保证服务器和客户端之间传输的数据不能够被修改，且不能被第三方查看到 --&gt;</span><br><span class="line">            &lt;!-- INTEGRAL: 要保证服务器和client之间传输的数据不能够被修改 --&gt;</span><br><span class="line">            &lt;!-- NONE: 指示容器必须能够在任一的连接上提供数据。（即用HTTP或HTTPS，由客户端来决定） --&gt;</span><br><span class="line">            &lt;transport-guarantee&gt;CONFIDENTIAL&lt;/transport-guarantee&gt;</span><br><span class="line">        &lt;/user-data-constraint&gt;</span><br><span class="line">    &lt;/security-constraint&gt;</span><br><span class="line">&lt;/web-app&gt;</span><br><span class="line"></span><br><span class="line">3. index.jsp</span><br><span class="line"></span><br><span class="line">&lt;%@ page language="java" pageEncoding="UTF-8"%&gt;</span><br><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html lang="zh-cn"&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;title&gt;客户端证书上传&lt;/title&gt;</span><br><span class="line">  &lt;meta http-equiv="pragma" content="no-cache"&gt;</span><br><span class="line">  &lt;meta http-equiv="cache-control" content="no-cache"&gt;</span><br><span class="line">  &lt;meta http-equiv="expires" content="0"&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;form action="sslServlet" method="post"&gt;</span><br><span class="line">  &lt;input type="submit" value="提交证书"/&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>客户端代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">4</span>. HttpClientUtil.java</span><br><span class="line"><span class="keyword">import</span> org.apache.http.HttpEntity;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.HttpResponse;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.NameValuePair;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.client.HttpClient;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.client.entity.UrlEncodedFormEntity;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.client.methods.HttpPost;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.conn.scheme.Scheme;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.conn.ssl.SSLSocketFactory;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.impl.client.DefaultHttpClient;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.message.BasicNameValuePair;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.util.EntityUtils;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.security.KeyStore;</span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HttpClientUtil</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String KEY_STORE_TYPE_JKS = <span class="string">"jks"</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String KEY_STORE_TYPE_P12 = <span class="string">"PKCS12"</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String SCHEME_HTTPS = <span class="string">"https"</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> HTTPS_PORT = <span class="number">8443</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String HTTPS_URL = <span class="string">"https://47.107.131.122:8443/SSLServlet/sslServlet"</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String KEY_STORE_CLIENT_PATH = <span class="string">"/tmp/clientcert/foxclient.keystore"</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String KEY_STORE_TRUST_PATH = <span class="string">"/tmp/clientcert/foxclienttrust.keystore"</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String KEY_STORE_PASSWORD = <span class="string">"foxclientks"</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String KEY_PASSWORD = <span class="string">"foxclient"</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String KEY_STORE_TRUST_PASSWORD = <span class="string">"foxclienttrustks"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        String url=HTTPS_URL;</span><br><span class="line">        Map params=<span class="keyword">new</span> HashMap();</span><br><span class="line">        params.put(<span class="string">"cmd"</span>,<span class="string">"test"</span>);</span><br><span class="line">        params.put(<span class="string">"data"</span>,<span class="string">"证书1"</span>);</span><br><span class="line">        String charset=<span class="string">"utf-8"</span>;</span><br><span class="line">        doSSLPost( url, params,  charset);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">doSSLPost</span><span class="params">(String url, Map&lt;String, String&gt; map, String charset)</span> </span>&#123;</span><br><span class="line">        HttpClient httpClient = <span class="keyword">new</span> DefaultHttpClient();</span><br><span class="line">        String result = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            KeyStore keyStore = KeyStore.getInstance(KEY_STORE_TYPE_JKS);</span><br><span class="line">            KeyStore trustStore = KeyStore.getInstance(KEY_STORE_TYPE_JKS);</span><br><span class="line">            InputStream ksIn = <span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(KEY_STORE_CLIENT_PATH));</span><br><span class="line">            InputStream tsIn = <span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(KEY_STORE_TRUST_PATH));</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                keyStore.load(ksIn, KEY_STORE_PASSWORD.toCharArray());</span><br><span class="line">                trustStore.load(tsIn, KEY_STORE_TRUST_PASSWORD.toCharArray());</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    ksIn.close();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (Exception ignore) &#123;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    tsIn.close();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (Exception ignore) &#123;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            SSLSocketFactory socketFactory = <span class="keyword">new</span> SSLSocketFactory(keyStore, KEY_PASSWORD, trustStore);</span><br><span class="line">            Scheme sch = <span class="keyword">new</span> Scheme(SCHEME_HTTPS, socketFactory, HTTPS_PORT);</span><br><span class="line">            httpClient.getConnectionManager().getSchemeRegistry().register(sch);</span><br><span class="line">            HttpPost httpPost = <span class="keyword">new</span> HttpPost(url);</span><br><span class="line">            <span class="comment">//设置参数</span></span><br><span class="line">            <span class="keyword">if</span> (map != <span class="keyword">null</span>) &#123;</span><br><span class="line">                List&lt;NameValuePair&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">                Iterator iterator = map.entrySet().iterator();</span><br><span class="line">                <span class="keyword">while</span> (iterator.hasNext()) &#123;</span><br><span class="line">                    Map.Entry&lt;String, String&gt; elem = (Map.Entry&lt;String, String&gt;) iterator.next();</span><br><span class="line">                    list.add(<span class="keyword">new</span> BasicNameValuePair(elem.getKey(), elem.getValue()));</span><br><span class="line">                &#125;</span><br><span class="line">                httpPost.setEntity(<span class="keyword">new</span> UrlEncodedFormEntity(list, charset));</span><br><span class="line">            &#125;</span><br><span class="line">            HttpResponse response = httpClient.execute(httpPost);</span><br><span class="line">            <span class="keyword">if</span> (response != <span class="keyword">null</span>) &#123;</span><br><span class="line">                HttpEntity resEntity = response.getEntity();</span><br><span class="line">                <span class="keyword">if</span> (resEntity != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    result = EntityUtils.toString(resEntity, charset);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(<span class="string">"result=&#123;"</span> + result + <span class="string">"&#125;"</span>);</span><br><span class="line">        &#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            httpClient.getConnectionManager().shutdown();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="演示项目"><a href="#演示项目" class="headerlink" title="演示项目"></a>演示项目</h1><ol>
+<li>将服务端代码打包<code>SSLServlet.war</code> ， 部署在<code>${CATALINA_HOME}/webapps/</code>下</li>
+<li>wireshark设置<code>ip.addr == 47.107.131.122 and ssl</code>过滤条件, 抓包</li>
+<li>run <code>HttpClientUtil.java</code>的main方法</li>
+</ol>
+<p>serlvet向客户端输出客户证书信息</p>
+<p><img src="tomcat-ssl-two-way-auth/run_httpclient_code.png" alt=""></p>
+<p>wireshark抓包——双向认证</p>
+<p><img src="/tomcat-ssl-two-way-auth/capture_two_way.png" alt=""></p>
+<h1 id="单向认证"><a href="#单向认证" class="headerlink" title="单向认证"></a>单向认证</h1><p>编辑${catalina.base}/conf/server.xml， 设置<code>clientAuth=&quot;false&quot;</code></p>
+<p>重启服务： <code>systemctl restart tomcat</code></p>
+<p>run <code>HttpClientUtil.java</code>的main方法</p>
+<p><img src="/tomcat-ssl-two-way-auth/run_client_code_one_way.png" alt=""></p>
+<p><img src="/tomcat-ssl-two-way-auth/capture_one_way.png" alt=""></p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>java tomcat 搭建SSL双向认证以及httpclient代码： <a href="http://ian.wang/118.htm" target="_blank" rel="noopener">http://ian.wang/118.htm</a></p>
+<p>Java-JSSE-SSL/TLS编程代码实例-双向认证： <a href="https://blog.csdn.net/fw0124/article/details/41013333" target="_blank" rel="noopener">https://blog.csdn.net/fw0124/article/details/41013333</a></p>
+<p>图解SSL/TLS协议： <a href="https://blog.csdn.net/fw0124/article/details/40875629" target="_blank" rel="noopener">https://blog.csdn.net/fw0124/article/details/40875629</a></p>
+<p>使用wireshark观察SSL/TLS握手过程–双向认证/单向认证：<a href="https://blog.csdn.net/fw0124/article/details/40983787" target="_blank" rel="noopener">https://blog.csdn.net/fw0124/article/details/40983787</a></p>
+<p>Apache Tomcat 8 Configuration Reference： <a href="http://tomcat.apache.org/tomcat-8.0-doc/config/context.html" target="_blank" rel="noopener">http://tomcat.apache.org/tomcat-8.0-doc/config/context.html</a></p>
+<p>Deploy a Java web application inside a Tomcat server container： <a href="https://www.jetbrains.com/help/idea/deploying-a-web-app-into-an-app-server-container.html" target="_blank" rel="noopener">https://www.jetbrains.com/help/idea/deploying-a-web-app-into-an-app-server-container.html</a></p>
+<p>带你使用Nginx实现HTTPS双向验证： <a href="http://blog.51cto.com/tchuairen/1782945" target="_blank" rel="noopener">http://blog.51cto.com/tchuairen/1782945</a></p>
+<p>在Linux安装配置Tomcat 并部署web应用 ( 三种方式 )：<a href="https://my.oschina.net/magicalSam/blog/892416" target="_blank" rel="noopener">https://my.oschina.net/magicalSam/blog/892416</a></p>
+<p>java keytool - how to modify a keystore’s Owner and Issuer information?<a href="https://security.stackexchange.com/questions/148074/java-keytool-how-to-modify-a-keystores-owner-and-issuer-information" target="_blank" rel="noopener">https://security.stackexchange.com/questions/148074/java-keytool-how-to-modify-a-keystores-owner-and-issuer-information</a></p>
+<p>5分钟内搞定 Tomcat 的 SSL 配置：<a href="https://www.oschina.net/question/12_23148" target="_blank" rel="noopener">https://www.oschina.net/question/12_23148</a></p>
 
       
     </div>
@@ -438,6 +512,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/安全/" rel="tag"># 安全</a>
+          
+        </div>
       
 
       
@@ -472,10 +552,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/jsse-ssl/" rel="prev" title="Java-JSSE-SSL/TLS编程代码实例-双向认证">
-                Java-JSSE-SSL/TLS编程代码实例-双向认证 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -534,8 +610,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -576,7 +661,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -633,6 +718,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#环境"><span class="nav-number">1.</span> <span class="nav-text">环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Keytool创建密钥库"><span class="nav-number">2.</span> <span class="nav-text">Keytool创建密钥库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置Tomcat"><span class="nav-number">3.</span> <span class="nav-text">配置Tomcat</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#演示代码"><span class="nav-number">4.</span> <span class="nav-text">演示代码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#演示项目"><span class="nav-number">5.</span> <span class="nav-text">演示项目</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#单向认证"><span class="nav-number">6.</span> <span class="nav-text">单向认证</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">7.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
