@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://www.melonydi.cn/how-to-install-apache-tomcat-8-on-centos-7/</loc>
+    <loc>http://www.melonydi.cn/jsse-ssl/</loc>
     
-    <lastmod>2018-12-09T05:31:14.549Z</lastmod>
+    <lastmod>2018-12-09T10:27:53.315Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.melonydi.cn/jsse-ssl/</loc>
+    <loc>http://www.melonydi.cn/tomcat-ssl-two-way-auth/</loc>
     
-    <lastmod>2018-12-08T16:26:24.116Z</lastmod>
+    <lastmod>2018-12-09T10:12:27.303Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.melonydi.cn/how-to-install-apache-tomcat-8-on-centos-7/</loc>
+    
+    <lastmod>2018-12-09T05:31:14.549Z</lastmod>
     
   </url>
   

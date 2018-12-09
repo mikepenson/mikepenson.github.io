@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="彭启骏的个人博客">
 <meta property="og:description" content="原文：https://blog.csdn.net/fw0124/article/details/41013333  关于SSL/TLS/JSSE的介绍：1）SSL/TLS协议运行机制2）图解SSL/TLS协议3）使用wireshark观察SSL/TLS握手过程4）SSL/TLS的Java实现–JSSE  生成keystore文件  keytool -genkey -alias catserver">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-08T16:26:24.116Z">
+<meta property="og:updated_time" content="2018-12-09T10:27:53.315Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java-JSSE-SSL&#x2F;TLS编程代码实例-双向认证">
 <meta name="twitter:description" content="原文：https://blog.csdn.net/fw0124/article/details/41013333  关于SSL/TLS/JSSE的介绍：1）SSL/TLS协议运行机制2）图解SSL/TLS协议3）使用wireshark观察SSL/TLS握手过程4）SSL/TLS的Java实现–JSSE  生成keystore文件  keytool -genkey -alias catserver">
@@ -320,7 +320,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-12-09T00:26:24+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-12-09T18:27:53+08:00">
                 2018-12-09
               </time>
             
@@ -391,7 +391,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,879
+                  2,892
                 </span>
               
 
@@ -407,7 +407,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  14
+                  15
                 </span>
               
             </div>
@@ -454,7 +454,7 @@
 <p>5）创建server的truststore文件并导入client的证书（其中包括client的公钥）。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">~ keytool -import -alias foxclient -keystore /tmp/catservertrust.keystore -storepass catservertrustks -file /tmp/foxclient.cer</span><br><span class="line">所有者: CN=fox, OU=fox, O=fox, L=fox, ST=fox, C=fx</span><br><span class="line">发布者: CN=fox, OU=fox, O=fox, L=fox, ST=fox, C=fx</span><br><span class="line">序列号: 394a8f71</span><br><span class="line">有效期为 Sun Dec 02 23:51:03 CST 2018 至 Sat Mar 02 23:51:03 CST 2019</span><br><span class="line">证书指纹:</span><br><span class="line">	 MD5:  E2:8A:A9:2C:8E:93:A5:4C:3C:88:CA:F1:E9:8B:65:4E</span><br><span class="line">	 SHA1: 78:B8:37:F1:64:28:40:3F:8F:45:B1:84:5E:18:34:E4:D3:A1:04:7B</span><br><span class="line">	 SHA256: 11:1A:C2:7A:F9:4F:87:50:E1:BC:DF:25:96:1C:41:57:F7:9F:89:AE:F0:30:08:E0:A6:6D:7A:B2:42:58:02:9B</span><br><span class="line">签名算法名称: SHA1withDSA</span><br><span class="line">主体公共密钥算法: 512 位 DSA 密钥 (弱)</span><br><span class="line">版本: 3</span><br><span class="line"></span><br><span class="line">扩展:</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>1: ObjectId: 2.5.29.14 Criticality=false</span><br><span class="line">SubjectKeyIdentifier [</span><br><span class="line">KeyIdentifier [</span><br><span class="line">0000: 8C FE 0D 34 09 F1 EB 3A   47 6F FB BE 30 EF 53 BE  ...4...:Go..0.S.</span><br><span class="line">0010: B7 30 64 A5                                        .0d.</span><br><span class="line">]</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">Warning:</span><br><span class="line">输入 使用的 512 位 DSA 密钥 存在安全风险。</span><br><span class="line"></span><br><span class="line">是否信任此证书? [否]:  y</span><br><span class="line">证书已添加到密钥库中</span><br></pre></td></tr></table></figure>
 <p>6）创建client的truststore文件并导入server的证书（其中包括server的公钥）。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">~ 5</span><br><span class="line">所有者: CN=cat, OU=cat, O=cat, L=cat, ST=cat, C=ct</span><br><span class="line">发布者: CN=cat, OU=cat, O=cat, L=cat, ST=cat, C=ct</span><br><span class="line">序列号: 5ff69b71</span><br><span class="line">有效期为 Sun Dec 02 23:28:16 CST 2018 至 Sat Mar 02 23:28:16 CST 2019</span><br><span class="line">证书指纹:</span><br><span class="line">	 MD5:  4B:0F:73:74:41:A8:73:73:07:51:61:BA:01:C0:47:51</span><br><span class="line">	 SHA1: 4F:2C:7B:B2:D3:32:F2:6A:10:6B:5E:A3:D1:E4:83:1B:8F:B3:D0:FB</span><br><span class="line">	 SHA256: 66:05:D1:C9:97:E1:A1:BC:31:20:B6:7D:E6:A0:F3:72:05:CA:85:69:FF:F7:02:36:66:27:BC:8E:DB:B8:EA:7D</span><br><span class="line">签名算法名称: SHA256withRSA</span><br><span class="line">主体公共密钥算法: 1024 位 RSA 密钥</span><br><span class="line">版本: 3</span><br><span class="line"></span><br><span class="line">扩展:</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>1: ObjectId: 2.5.29.14 Criticality=false</span><br><span class="line">SubjectKeyIdentifier [</span><br><span class="line">KeyIdentifier [</span><br><span class="line">0000: 21 BE 14 75 16 B9 55 23   DF 88 CD 9B F8 AF F5 FD  !..u..U#........</span><br><span class="line">0010: F1 0E 85 29                                        ...)</span><br><span class="line">]</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">是否信任此证书? [否]:  y</span><br><span class="line">证书已添加到密钥库中</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">~ keytool -import -alias catserver -keystore /tmp/foxclienttrust.keystore -storepass foxclienttrustks -file /tmp/catserver.cer</span><br><span class="line">所有者: CN=cat, OU=cat, O=cat, L=cat, ST=cat, C=ct</span><br><span class="line">发布者: CN=cat, OU=cat, O=cat, L=cat, ST=cat, C=ct</span><br><span class="line">序列号: 5ff69b71</span><br><span class="line">有效期为 Sun Dec 02 23:28:16 CST 2018 至 Sat Mar 02 23:28:16 CST 2019</span><br><span class="line">证书指纹:</span><br><span class="line">	 MD5:  4B:0F:73:74:41:A8:73:73:07:51:61:BA:01:C0:47:51</span><br><span class="line">	 SHA1: 4F:2C:7B:B2:D3:32:F2:6A:10:6B:5E:A3:D1:E4:83:1B:8F:B3:D0:FB</span><br><span class="line">	 SHA256: 66:05:D1:C9:97:E1:A1:BC:31:20:B6:7D:E6:A0:F3:72:05:CA:85:69:FF:F7:02:36:66:27:BC:8E:DB:B8:EA:7D</span><br><span class="line">签名算法名称: SHA256withRSA</span><br><span class="line">主体公共密钥算法: 1024 位 RSA 密钥</span><br><span class="line">版本: 3</span><br><span class="line"></span><br><span class="line">扩展:</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>1: ObjectId: 2.5.29.14 Criticality=false</span><br><span class="line">SubjectKeyIdentifier [</span><br><span class="line">KeyIdentifier [</span><br><span class="line">0000: 21 BE 14 75 16 B9 55 23   DF 88 CD 9B F8 AF F5 FD  !..u..U#........</span><br><span class="line">0010: F1 0E 85 29                                        ...)</span><br><span class="line">]</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">是否信任此证书? [否]:  y</span><br><span class="line">证书已添加到密钥库中</span><br></pre></td></tr></table></figure>
 <p><strong>keysize</strong><br>如果加密算法是rsa，key size范围512-&gt;16384 bits，并且必须是64的倍数。<br>如果加密算法是dsa，key size范围512-&gt;1024 bits，并且必须是64的倍数。</p>
 <p><strong>sigalg</strong><br>如果加密算法是rsa，签名算法可以是md5withrsa/sha1withrsa/sha256withrsa/sha384withrsa/sha512withrsa<br>如果加密算法是dsa，签名算法可以是sha1withdsa</p>
 <p>如果熟悉Java的socket编程，就会发现使用JSSE进行SSL/TLS编程其实和它很相似。</p>
@@ -547,8 +547,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/how-to-install-apache-tomcat-8-on-centos-7/" rel="next" title="CentOS 7上安装Apache Tomcat 8">
-                <i class="fa fa-chevron-left"></i> CentOS 7上安装Apache Tomcat 8
+              <a href="/tomcat-ssl-two-way-auth/" rel="next" title="java tomcat 搭建SSL双向认证以及httpclient代码">
+                <i class="fa fa-chevron-left"></i> java tomcat 搭建SSL双向认证以及httpclient代码
               </a>
             
           </div>
@@ -643,7 +643,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
