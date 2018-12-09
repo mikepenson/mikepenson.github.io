@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="转载, SSL, keytool," />
+  <meta name="keywords" content="转载,SSL,keytool," />
 
 
 
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="原文：https://blog.csdn.net/fw0124/article/details/41013333  关于SSL/TLS/JSSE的介绍：1）SSL/TLS协议运行机制2）图解SSL/TLS协议3）使用wireshark观察SSL/TLS握手过程4）SSL/TLS的Java实现–JSSE 使用keytool创建密钥库使用双向认证的SSL/TLS协议通信，客户端和服务器端都要设置用于证">
-<meta name="keywords" content="转载, SSL, keytool">
+<meta name="description" content="原文：https://blog.csdn.net/fw0124/article/details/41013333  关于SSL/TLS/JSSE的介绍：1）SSL/TLS协议运行机制2）图解SSL/TLS协议3）使用wireshark观察SSL/TLS握手过程4）SSL/TLS的Java实现–JSSE  生成keystore文件  keytool -genkey -alias catserver">
+<meta name="keywords" content="转载,SSL,keytool">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java-JSSE-SSL&#x2F;TLS编程代码实例-双向认证">
 <meta property="og:url" content="http://www.melonydi.cn/jsse-ssl/index.html">
 <meta property="og:site_name" content="彭启骏的个人博客">
-<meta property="og:description" content="原文：https://blog.csdn.net/fw0124/article/details/41013333  关于SSL/TLS/JSSE的介绍：1）SSL/TLS协议运行机制2）图解SSL/TLS协议3）使用wireshark观察SSL/TLS握手过程4）SSL/TLS的Java实现–JSSE 使用keytool创建密钥库使用双向认证的SSL/TLS协议通信，客户端和服务器端都要设置用于证">
+<meta property="og:description" content="原文：https://blog.csdn.net/fw0124/article/details/41013333  关于SSL/TLS/JSSE的介绍：1）SSL/TLS协议运行机制2）图解SSL/TLS协议3）使用wireshark观察SSL/TLS握手过程4）SSL/TLS的Java实现–JSSE  生成keystore文件  keytool -genkey -alias catserver">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-02T16:43:26.408Z">
+<meta property="og:updated_time" content="2018-12-08T16:26:24.116Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java-JSSE-SSL&#x2F;TLS编程代码实例-双向认证">
-<meta name="twitter:description" content="原文：https://blog.csdn.net/fw0124/article/details/41013333  关于SSL/TLS/JSSE的介绍：1）SSL/TLS协议运行机制2）图解SSL/TLS协议3）使用wireshark观察SSL/TLS握手过程4）SSL/TLS的Java实现–JSSE 使用keytool创建密钥库使用双向认证的SSL/TLS协议通信，客户端和服务器端都要设置用于证">
+<meta name="twitter:description" content="原文：https://blog.csdn.net/fw0124/article/details/41013333  关于SSL/TLS/JSSE的介绍：1）SSL/TLS协议运行机制2）图解SSL/TLS协议3）使用wireshark观察SSL/TLS握手过程4）SSL/TLS的Java实现–JSSE  生成keystore文件  keytool -genkey -alias catserver">
 
 
 
@@ -320,8 +320,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-12-03T00:43:26+08:00">
-                2018-12-03
+              <time title="更新于" itemprop="dateModified" datetime="2018-12-09T00:26:24+08:00">
+                2018-12-09
               </time>
             
           </span>
@@ -391,7 +391,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,831
+                  2,879
                 </span>
               
 
@@ -430,6 +430,18 @@
       
         <p>原文：<a href="https://blog.csdn.net/fw0124/article/details/41013333" target="_blank" rel="noopener">https://blog.csdn.net/fw0124/article/details/41013333</a> </p>
 <p>关于SSL/TLS/JSSE的介绍：<br><a href="http://blog.csdn.net/fw0124/article/details/40873253" target="_blank" rel="noopener">1）SSL/TLS协议运行机制</a><br><a href="http://blog.csdn.net/fw0124/article/details/40875629" target="_blank" rel="noopener">2）图解SSL/TLS协议</a><br><a href="http://blog.csdn.net/fw0124/article/details/40983787" target="_blank" rel="noopener">3）使用wireshark观察SSL/TLS握手过程</a><br><a href="http://blog.csdn.net/fw0124/article/details/40889167" target="_blank" rel="noopener">4）SSL/TLS的Java实现–JSSE</a></p>
+<ol>
+<li>生成keystore文件</li>
+</ol>
+<p>keytool -genkey -alias catserver -keyalg rsa -keysize 1024 -sigalg sha256withrsa -keypass catserver -keystore /tmp/catserver.keystore -storepass catserverks</p>
+<ol>
+<li>从keystore导出证书</li>
+</ol>
+<p>keytool -export -alias catserver -keystore /tmp/catserver.keystore -storepass catserverks -file /tmp/catserver.cer</p>
+<ol>
+<li>生成truststore，并导入对端证书</li>
+</ol>
+<p>keytool -import -alias foxclient -keystore /tmp/catservertrust.keystore -storepass catservertrustks -file /tmp/foxclient.cer</p>
 <h1 id="使用keytool创建密钥库"><a href="#使用keytool创建密钥库" class="headerlink" title="使用keytool创建密钥库"></a>使用keytool创建密钥库</h1><p>使用双向认证的SSL/TLS协议通信，客户端和服务器端都要设置用于证实自己身份的安全证书，并且还要设置信任对方的哪些安全证书。<br>理论上一共需要准备四个文件，两个keystore文件和两个truststore文件。<br>通信双方分别拥有一个keystore和一个truststore，<strong>keystore用于存放自己的密钥和公钥，truststore用于存放所有需要信任方的公钥。</strong></p>
 <p>首先使用JDK自带的keytool工具来生成keystore和truststore。这里使用的Java版本是1.7。<br>1）创建server的keystore文件，生成server的公钥/私钥密钥对。需要指定keystore的密码(storepass)和密钥对的密码(keypass)。<br><strong>访问keystore需要storepass。访问密钥对需要keypass。</strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">~ keytool -genkey -alias catserver -keyalg rsa -keysize 1024 -sigalg sha256withrsa -keypass catserver -keystore /tmp/catserver.keystore -storepass catserverks</span><br><span class="line">您的名字与姓氏是什么?</span><br><span class="line">  [Unknown]:  cat</span><br><span class="line">您的组织单位名称是什么?</span><br><span class="line">  [Unknown]:  cat</span><br><span class="line">您的组织名称是什么?</span><br><span class="line">  [Unknown]:  cat</span><br><span class="line">您所在的城市或区域名称是什么?</span><br><span class="line">  [Unknown]:  cat</span><br><span class="line">您所在的省/市/自治区名称是什么?</span><br><span class="line">  [Unknown]:  cat</span><br><span class="line">该单位的双字母国家/地区代码是什么?</span><br><span class="line">  [Unknown]:  ct</span><br><span class="line">CN=cat, OU=cat, O=cat, L=cat, ST=cat, C=ct是否正确?</span><br><span class="line">  [否]:  y</span><br><span class="line"> </span><br><span class="line">Warning:</span><br><span class="line">JKS 密钥库使用专用格式。建议使用 "keytool -importkeystore -srckeystore /tmp/catserver.keystore -destkeystore /tmp/catserver.keystore -deststoretype pkcs12" 迁移到行业标准格式 PKCS12。</span><br></pre></td></tr></table></figure>
@@ -442,7 +454,7 @@
 <p>5）创建server的truststore文件并导入client的证书（其中包括client的公钥）。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">~ keytool -import -alias foxclient -keystore /tmp/catservertrust.keystore -storepass catservertrustks -file /tmp/foxclient.cer</span><br><span class="line">所有者: CN=fox, OU=fox, O=fox, L=fox, ST=fox, C=fx</span><br><span class="line">发布者: CN=fox, OU=fox, O=fox, L=fox, ST=fox, C=fx</span><br><span class="line">序列号: 394a8f71</span><br><span class="line">有效期为 Sun Dec 02 23:51:03 CST 2018 至 Sat Mar 02 23:51:03 CST 2019</span><br><span class="line">证书指纹:</span><br><span class="line">	 MD5:  E2:8A:A9:2C:8E:93:A5:4C:3C:88:CA:F1:E9:8B:65:4E</span><br><span class="line">	 SHA1: 78:B8:37:F1:64:28:40:3F:8F:45:B1:84:5E:18:34:E4:D3:A1:04:7B</span><br><span class="line">	 SHA256: 11:1A:C2:7A:F9:4F:87:50:E1:BC:DF:25:96:1C:41:57:F7:9F:89:AE:F0:30:08:E0:A6:6D:7A:B2:42:58:02:9B</span><br><span class="line">签名算法名称: SHA1withDSA</span><br><span class="line">主体公共密钥算法: 512 位 DSA 密钥 (弱)</span><br><span class="line">版本: 3</span><br><span class="line"></span><br><span class="line">扩展:</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>1: ObjectId: 2.5.29.14 Criticality=false</span><br><span class="line">SubjectKeyIdentifier [</span><br><span class="line">KeyIdentifier [</span><br><span class="line">0000: 8C FE 0D 34 09 F1 EB 3A   47 6F FB BE 30 EF 53 BE  ...4...:Go..0.S.</span><br><span class="line">0010: B7 30 64 A5                                        .0d.</span><br><span class="line">]</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">Warning:</span><br><span class="line">输入 使用的 512 位 DSA 密钥 存在安全风险。</span><br><span class="line"></span><br><span class="line">是否信任此证书? [否]:  y</span><br><span class="line">证书已添加到密钥库中</span><br></pre></td></tr></table></figure>
 <p>6）创建client的truststore文件并导入server的证书（其中包括server的公钥）。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">~ keytool -import -alias catserver -keystore /tmp/foxclienttrust.keystore -storepass foxclienttrustks -file /tmp/catserver.cer</span><br><span class="line">所有者: CN=cat, OU=cat, O=cat, L=cat, ST=cat, C=ct</span><br><span class="line">发布者: CN=cat, OU=cat, O=cat, L=cat, ST=cat, C=ct</span><br><span class="line">序列号: 5ff69b71</span><br><span class="line">有效期为 Sun Dec 02 23:28:16 CST 2018 至 Sat Mar 02 23:28:16 CST 2019</span><br><span class="line">证书指纹:</span><br><span class="line">	 MD5:  4B:0F:73:74:41:A8:73:73:07:51:61:BA:01:C0:47:51</span><br><span class="line">	 SHA1: 4F:2C:7B:B2:D3:32:F2:6A:10:6B:5E:A3:D1:E4:83:1B:8F:B3:D0:FB</span><br><span class="line">	 SHA256: 66:05:D1:C9:97:E1:A1:BC:31:20:B6:7D:E6:A0:F3:72:05:CA:85:69:FF:F7:02:36:66:27:BC:8E:DB:B8:EA:7D</span><br><span class="line">签名算法名称: SHA256withRSA</span><br><span class="line">主体公共密钥算法: 1024 位 RSA 密钥</span><br><span class="line">版本: 3</span><br><span class="line"></span><br><span class="line">扩展:</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>1: ObjectId: 2.5.29.14 Criticality=false</span><br><span class="line">SubjectKeyIdentifier [</span><br><span class="line">KeyIdentifier [</span><br><span class="line">0000: 21 BE 14 75 16 B9 55 23   DF 88 CD 9B F8 AF F5 FD  !..u..U#........</span><br><span class="line">0010: F1 0E 85 29                                        ...)</span><br><span class="line">]</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">是否信任此证书? [否]:  y</span><br><span class="line">证书已添加到密钥库中</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">~ 5</span><br><span class="line">所有者: CN=cat, OU=cat, O=cat, L=cat, ST=cat, C=ct</span><br><span class="line">发布者: CN=cat, OU=cat, O=cat, L=cat, ST=cat, C=ct</span><br><span class="line">序列号: 5ff69b71</span><br><span class="line">有效期为 Sun Dec 02 23:28:16 CST 2018 至 Sat Mar 02 23:28:16 CST 2019</span><br><span class="line">证书指纹:</span><br><span class="line">	 MD5:  4B:0F:73:74:41:A8:73:73:07:51:61:BA:01:C0:47:51</span><br><span class="line">	 SHA1: 4F:2C:7B:B2:D3:32:F2:6A:10:6B:5E:A3:D1:E4:83:1B:8F:B3:D0:FB</span><br><span class="line">	 SHA256: 66:05:D1:C9:97:E1:A1:BC:31:20:B6:7D:E6:A0:F3:72:05:CA:85:69:FF:F7:02:36:66:27:BC:8E:DB:B8:EA:7D</span><br><span class="line">签名算法名称: SHA256withRSA</span><br><span class="line">主体公共密钥算法: 1024 位 RSA 密钥</span><br><span class="line">版本: 3</span><br><span class="line"></span><br><span class="line">扩展:</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>1: ObjectId: 2.5.29.14 Criticality=false</span><br><span class="line">SubjectKeyIdentifier [</span><br><span class="line">KeyIdentifier [</span><br><span class="line">0000: 21 BE 14 75 16 B9 55 23   DF 88 CD 9B F8 AF F5 FD  !..u..U#........</span><br><span class="line">0010: F1 0E 85 29                                        ...)</span><br><span class="line">]</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">是否信任此证书? [否]:  y</span><br><span class="line">证书已添加到密钥库中</span><br></pre></td></tr></table></figure>
 <p><strong>keysize</strong><br>如果加密算法是rsa，key size范围512-&gt;16384 bits，并且必须是64的倍数。<br>如果加密算法是dsa，key size范围512-&gt;1024 bits，并且必须是64的倍数。</p>
 <p><strong>sigalg</strong><br>如果加密算法是rsa，签名算法可以是md5withrsa/sha1withrsa/sha256withrsa/sha384withrsa/sha512withrsa<br>如果加密算法是dsa，签名算法可以是sha1withdsa</p>
 <p>如果熟悉Java的socket编程，就会发现使用JSSE进行SSL/TLS编程其实和它很相似。</p>
@@ -468,7 +480,7 @@
 <p>6）创建SSLSocketFactory，在指定的网络地址和端口上创建SSLSocket。</p>
 <p>7）在这个SSLSocket对象的输入输出流上进行读写。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> learning.net.ssl;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> java.io.BufferedReader;</span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStreamReader;</span><br><span class="line"><span class="keyword">import</span> java.io.PrintWriter;</span><br><span class="line"><span class="keyword">import</span> java.net.Socket;</span><br><span class="line"><span class="keyword">import</span> java.security.KeyStore;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> javax.net.ssl.KeyManagerFactory;</span><br><span class="line"><span class="keyword">import</span> javax.net.ssl.SSLContext;</span><br><span class="line"><span class="keyword">import</span> javax.net.ssl.SSLSocketFactory;</span><br><span class="line"><span class="keyword">import</span> javax.net.ssl.TrustManagerFactory;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FoxClient</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        String clientKeyStoreFile = <span class="string">"c:\\_tmp\\foxclient.keystore"</span>;</span><br><span class="line">        String clientKeyStorePwd = <span class="string">"foxclientks"</span>;</span><br><span class="line">        String foxclientKeyPwd = <span class="string">"foxclient"</span>;</span><br><span class="line">        String clientTrustKeyStoreFile = <span class="string">"c:\\_tmp\\foxclienttrust.keystore"</span>;</span><br><span class="line">        String clientTrustKeyStorePwd = <span class="string">"foxclienttrustks"</span>;</span><br><span class="line"> </span><br><span class="line">        KeyStore clientKeyStore = KeyStore.getInstance(<span class="string">"JKS"</span>);</span><br><span class="line">        clientKeyStore.load(<span class="keyword">new</span> FileInputStream(clientKeyStoreFile), clientKeyStorePwd.toCharArray());</span><br><span class="line"> </span><br><span class="line">        KeyStore clientTrustKeyStore = KeyStore.getInstance(<span class="string">"JKS"</span>);</span><br><span class="line">        clientTrustKeyStore.load(<span class="keyword">new</span> FileInputStream(clientTrustKeyStoreFile), clientTrustKeyStorePwd.toCharArray());</span><br><span class="line"> </span><br><span class="line">        KeyManagerFactory kmf = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());</span><br><span class="line">        kmf.init(clientKeyStore, foxclientKeyPwd.toCharArray());</span><br><span class="line"> </span><br><span class="line">        TrustManagerFactory tmf = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());</span><br><span class="line">        tmf.init(clientTrustKeyStore);</span><br><span class="line"> </span><br><span class="line">        SSLContext sslContext = SSLContext.getInstance(<span class="string">"TLSv1"</span>);</span><br><span class="line">        sslContext.init(kmf.getKeyManagers(), tmf.getTrustManagers(), <span class="keyword">null</span>);</span><br><span class="line">        </span><br><span class="line">        SSLSocketFactory socketFactory = sslContext.getSocketFactory();</span><br><span class="line">        Socket socket = socketFactory.createSocket(<span class="string">"localhost"</span>, CatServer.SERVER_PORT);</span><br><span class="line">        </span><br><span class="line">        PrintWriter out = <span class="keyword">new</span> PrintWriter(socket.getOutputStream(), <span class="keyword">true</span>);</span><br><span class="line">        BufferedReader in = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(socket.getInputStream()));</span><br><span class="line">        </span><br><span class="line">        send(<span class="string">"hello"</span>, out);</span><br><span class="line">        send(<span class="string">"exit"</span>, out);</span><br><span class="line">        receive(in);</span><br><span class="line">        socket.close();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">send</span><span class="params">(String s, PrintWriter out)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Sending: "</span> + s);     </span><br><span class="line">        out.println(s);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">receive</span><span class="params">(BufferedReader in)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        String s;</span><br><span class="line">        <span class="keyword">while</span> ((s = in.readLine()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">            System.out.println(<span class="string">"Reveived: "</span> + s);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="使用Openssl进行证书签名"><a href="#使用Openssl进行证书签名" class="headerlink" title="使用Openssl进行证书签名"></a>使用Openssl进行证书签名</h1>
+
       
     </div>
     
@@ -503,7 +515,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/转载-SSL-keytool/" rel="tag"># 转载, SSL, keytool</a>
+            <a href="/tags/转载/" rel="tag"># 转载</a>
+          
+            <a href="/tags/SSL/" rel="tag"># SSL</a>
+          
+            <a href="/tags/keytool/" rel="tag"># keytool</a>
           
         </div>
       
@@ -649,7 +665,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -682,6 +698,24 @@
 
           
           
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://pengzhendong.cn/" title="Randy's Notes" target="_blank">Randy's Notes</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://tutorials.jenkov.com/" title="Jenkov.com" target="_blank">Jenkov.com</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
 
           
 
@@ -698,7 +732,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#使用keytool创建密钥库"><span class="nav-number">1.</span> <span class="nav-text">使用keytool创建密钥库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#server端处理流程和代码"><span class="nav-number">2.</span> <span class="nav-text">server端处理流程和代码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#client端处理流程和代码"><span class="nav-number">3.</span> <span class="nav-text">client端处理流程和代码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用Openssl进行证书签名"><span class="nav-number">4.</span> <span class="nav-text">使用Openssl进行证书签名</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#使用keytool创建密钥库"><span class="nav-number">1.</span> <span class="nav-text">使用keytool创建密钥库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#server端处理流程和代码"><span class="nav-number">2.</span> <span class="nav-text">server端处理流程和代码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#client端处理流程和代码"><span class="nav-number">3.</span> <span class="nav-text">client端处理流程和代码</span></a></li></ol></div>
             
 
           </div>
