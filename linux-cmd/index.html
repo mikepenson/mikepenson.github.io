@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="翻译,软件安装," />
+  <meta name="keywords" content="转载," />
 
 
 
@@ -81,22 +81,18 @@
 
 
 
-<meta name="description" content="介绍Apache Tomcat是一个Web服务器和servlet容器，用于为Java应用程序提供服务。Tomcat是Apache Software Foundation发布的Java Servlet和JavaServer Pages技术的开源实现。本教程介绍CentOS 7服务器上Tomcat 8的最新版本的基本安装和一些配置。 安装Java下载jdk 1.8  https://www.oracl">
-<meta name="keywords" content="翻译,软件安装">
+<meta name="description" content="原文： http://man.linuxde.net/grep 文件过滤分割与合并 grep（global search regular expression(RE) and print out the line，全面搜索正则表达式并把行打印出来）是一种强大的文本搜索工具，它能使用正则表达式搜索文本，并把匹配的行打印出来。 选项12345678910111213141516171819202122">
+<meta name="keywords" content="转载">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CentOS 7上安装Apache Tomcat 8">
-<meta property="og:url" content="http://www.melonydi.cn/how-to-install-apache-tomcat-8-on-centos-7/index.html">
+<meta property="og:title" content="（转）grep命令">
+<meta property="og:url" content="http://www.melonydi.cn/linux-cmd/index.html">
 <meta property="og:site_name" content="彭启骏的个人博客">
-<meta property="og:description" content="介绍Apache Tomcat是一个Web服务器和servlet容器，用于为Java应用程序提供服务。Tomcat是Apache Software Foundation发布的Java Servlet和JavaServer Pages技术的开源实现。本教程介绍CentOS 7服务器上Tomcat 8的最新版本的基本安装和一些配置。 安装Java下载jdk 1.8  https://www.oracl">
+<meta property="og:description" content="原文： http://man.linuxde.net/grep 文件过滤分割与合并 grep（global search regular expression(RE) and print out the line，全面搜索正则表达式并把行打印出来）是一种强大的文本搜索工具，它能使用正则表达式搜索文本，并把匹配的行打印出来。 选项12345678910111213141516171819202122">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://www.melonydi.cn/how-to-install-apache-tomcat-8-on-centos-7/5-1.png">
-<meta property="og:image" content="http://www.melonydi.cn/how-to-install-apache-tomcat-8-on-centos-7/5-2.png">
-<meta property="og:image" content="http://www.melonydi.cn/how-to-install-apache-tomcat-8-on-centos-7/5-3.png">
-<meta property="og:updated_time" content="2018-12-09T05:31:14.549Z">
+<meta property="og:updated_time" content="2018-12-10T15:36:54.794Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CentOS 7上安装Apache Tomcat 8">
-<meta name="twitter:description" content="介绍Apache Tomcat是一个Web服务器和servlet容器，用于为Java应用程序提供服务。Tomcat是Apache Software Foundation发布的Java Servlet和JavaServer Pages技术的开源实现。本教程介绍CentOS 7服务器上Tomcat 8的最新版本的基本安装和一些配置。 安装Java下载jdk 1.8  https://www.oracl">
-<meta name="twitter:image" content="http://www.melonydi.cn/how-to-install-apache-tomcat-8-on-centos-7/5-1.png">
+<meta name="twitter:title" content="（转）grep命令">
+<meta name="twitter:description" content="原文： http://man.linuxde.net/grep 文件过滤分割与合并 grep（global search regular expression(RE) and print out the line，全面搜索正则表达式并把行打印出来）是一种强大的文本搜索工具，它能使用正则表达式搜索文本，并把匹配的行打印出来。 选项12345678910111213141516171819202122">
 
 
 
@@ -126,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://www.melonydi.cn/how-to-install-apache-tomcat-8-on-centos-7/"/>
+  <link rel="canonical" href="http://www.melonydi.cn/linux-cmd/"/>
 
 
 
 
 
-  <title>CentOS 7上安装Apache Tomcat 8 | 彭启骏的个人博客</title>
+  <title>（转）grep命令 | 彭启骏的个人博客</title>
   
 
 
@@ -279,7 +275,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.melonydi.cn/how-to-install-apache-tomcat-8-on-centos-7/">
+    <link itemprop="mainEntityOfPage" href="http://www.melonydi.cn/linux-cmd/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="彭启骏">
@@ -296,7 +292,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">CentOS 7上安装Apache Tomcat 8</h2>
+          <h2 class="post-title" itemprop="name headline">（转）grep命令</h2>
         
 
         <div class="post-meta">
@@ -308,8 +304,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-09T12:39:15+08:00">
-                2018-12-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-10T23:29:51+08:00">
+                2018-12-10
               </time>
             
 
@@ -324,34 +320,12 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-12-09T13:31:14+08:00">
-                2018-12-09
+              <time title="更新于" itemprop="dateModified" datetime="2018-12-10T23:36:54+08:00">
+                2018-12-10
               </time>
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/安全/" itemprop="url" rel="index">
-                    <span itemprop="name">安全</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -361,8 +335,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/how-to-install-apache-tomcat-8-on-centos-7/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/how-to-install-apache-tomcat-8-on-centos-7/" itemprop="commentsCount"></span>
+                <a href="/linux-cmd/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/linux-cmd/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -370,7 +344,7 @@
 
           
           
-             <span id="/how-to-install-apache-tomcat-8-on-centos-7/" class="leancloud_visitors" data-flag-title="CentOS 7上安装Apache Tomcat 8">
+             <span id="/linux-cmd/" class="leancloud_visitors" data-flag-title="（转）grep命令">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -395,7 +369,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,109
+                  1,491
                 </span>
               
 
@@ -411,7 +385,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5
+                  6
                 </span>
               
             </div>
@@ -432,52 +406,44 @@
       
 
       
-        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Apache Tomcat是一个Web服务器和servlet容器，用于为Java应用程序提供服务。Tomcat是Apache Software Foundation发布的Java Servlet和JavaServer Pages技术的开源实现。本教程介绍CentOS 7服务器上Tomcat 8的最新版本的基本安装和一些配置。</p>
-<h2 id="安装Java"><a href="#安装Java" class="headerlink" title="安装Java"></a>安装Java</h2><p>下载jdk 1.8 </p>
-<p><a href="https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="noopener">https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html</a></p>
-<p>执行以下安装命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> rpm -ivh jdk-8u111-linux-x64.rpm</span><br><span class="line"><span class="meta">#</span> java -version</span><br></pre></td></tr></table></figure>
-<h2 id="安装Tomcat"><a href="#安装Tomcat" class="headerlink" title="安装Tomcat"></a>安装Tomcat</h2><p><strong>下载Tomcat二进制文件</strong></p>
-<p>在 <a href="https://tomcat.apache.org/download-80.cgi" target="_blank" rel="noopener">Tomcat 8</a> 找到Tomcat8的二进制版本， 下载到software目录下， 然后解压缩到/usr下</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> wget http://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-8/v8.5.35/bin/apache-tomcat-8.5.35.tar.gz</span><br><span class="line"><span class="meta">#</span> mkdir /usr/tomcat</span><br><span class="line"><span class="meta">#</span> tar xvf apache-tomcat-8.5.35.tar.gz -C /usr/tomcat/ --strip-components=1</span><br></pre></td></tr></table></figure>
-<p><strong>安装Systemd单元文件</strong></p>
-<p>因为我们希望能够将Tomcat作为服务运行，所以我们将设置一个Tomcat Systemd单元文件。</p>
-<p>通过运行以下命令创建并打开单元文件：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> vi /etc/systemd/system/tomcat.service</span><br></pre></td></tr></table></figure>
-<p>粘贴以下脚本。您可能还想修改在以下位置指定的内存分配设置<code>CATALINA_OPTS</code>：</p>
-<p>/etc/systemd/system/tomcat.service</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> Systemd unit file for tomcat</span><br><span class="line">[Unit]</span><br><span class="line">Description=Apache Tomcat Web Application Container</span><br><span class="line">After=syslog.target network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=forking</span><br><span class="line"></span><br><span class="line">Environment=JAVA_HOME=/usr/java/jdk1.8.0_191-amd64/jre</span><br><span class="line">Environment=CATALINA_PID=/usr/tomcat/temp/tomcat.pid</span><br><span class="line">Environment=CATALINA_HOME=/usr/tomcat</span><br><span class="line">Environment=CATALINA_BASE=/usr/tomcat</span><br><span class="line">Environment='CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC'</span><br><span class="line">Environment='JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom'</span><br><span class="line"></span><br><span class="line">ExecStart=/usr/tomcat/bin/startup.sh</span><br><span class="line">ExecStop=/bin/kill -15 $MAINPID</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>User=tomcat</span><br><span class="line"><span class="meta">#</span>Group=tomcat</span><br><span class="line">UMask=0007</span><br><span class="line">RestartSec=10</span><br><span class="line">Restart=always</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
-<p>现在重新加载Systemd以加载Tomcat单元文件：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload</span><br></pre></td></tr></table></figure>
-<p>现在，您可以使用以下<code>systemctl</code>命令启动Tomcat服务：shell</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start tomcat</span><br></pre></td></tr></table></figure>
-<p>输入以下命令检查服务是否已成功启动：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status tomcat</span><br></pre></td></tr></table></figure>
-<p>如果要启用Tomcat服务，则在服务器启动时启动，运行以下命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable tomcat</span><br></pre></td></tr></table></figure>
-<p>Tomcat尚未完全设置，但您可以通过访问您的域或IP地址，然后<code>:8080</code>在Web浏览器中访问默认的启动页面（前提8080已经开放）：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Open in web browser:</span><br><span class="line">http://server_IP_address:8080</span><br></pre></td></tr></table></figure>
-<p>除了其他信息之外，您还将看到默认的Tomcat启动页面。现在我们将深入介绍Tomcat的安装。</p>
-<h2 id="配置Tomcat-Web管理界面"><a href="#配置Tomcat-Web管理界面" class="headerlink" title="配置Tomcat Web管理界面"></a>配置Tomcat Web管理界面</h2><p>添加可以访问<code>manager-gui</code>和<code>admin-gui</code>（Tomcat附带的Web应用程序）的用户</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> vi /usr/tomcat/conf/tomcat-users.xml</span><br><span class="line">&lt;tomcat-users&gt;</span><br><span class="line">    &lt;user username="***" password="***" roles="manager-gui,admin-gui"/&gt;</span><br><span class="line">&lt;/tomcat-users&gt;</span><br></pre></td></tr></table></figure>
-<p>默认情况下，较新版本的Tomcat将对Manager和Host Manager应用程序的访问限制为来自服务器本身的连接。由于我们在远程计算机上安装，您可能希望删除或更改此限制。要更改对这些的IP地址限制，请打开相应的<code>context.xml</code>文件。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> vim /usr/tomcat/webapps/manager/META-INF/context.xml</span><br><span class="line"><span class="meta">#</span> vim /usr/tomcat/webapps/host-manager/META-INF/context.xml</span><br></pre></td></tr></table></figure>
-<p>在内部，注释掉IP地址限制以允许来自任何地方的连接。或者，如果您只允许访问来自您自己的IP地址的连接，您可以将您的公共IP地址添加到列表中：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;Context antiResourceLocking="false" privileged="true" &gt;</span><br><span class="line">  &lt;!--&lt;Valve className="org.apache.catalina.valves.RemoteAddrValve"</span><br><span class="line">         allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" /&gt;--&gt;</span><br><span class="line">&lt;/Context&gt;</span><br></pre></td></tr></table></figure>
-<p>重启Tomcat服务使得修改生效</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> systemctl restart tomcat</span><br></pre></td></tr></table></figure>
-<h2 id="访问Web界面"><a href="#访问Web界面" class="headerlink" title="访问Web界面"></a>访问Web界面</h2><p>现在Tomcat已启动并运行，让我们在Web浏览器中访问Web管理界面。您可以通过在端口8080上访问服务器的公网IP地址来执行此操作：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Open in web browser:</span><br><span class="line">http://server_IP_address:8080</span><br></pre></td></tr></table></figure>
-<p><img src="/how-to-install-apache-tomcat-8-on-centos-7/5-1.png" alt=""></p>
-<p>我们来看看Manager App，可通过链接访问或：<code>http://server_IP_address:8080/manager/html</code></p>
-<p><img src="/how-to-install-apache-tomcat-8-on-centos-7/5-2.png" alt=""></p>
-<p>Web应用程序管理器用于管理Java应用程序。您可以在此处启动，停止，重新加载，部署和取消部署。您还可以在应用程序上运行一些诊断程序（即查找内存泄漏）。最后，本页最下方提供了有关您的服务器的信息。</p>
-<p>现在让我们看看主机管理器，可通过链接访问或：<code>http://server_IP_address:8080/host-manager/html/</code></p>
-<p><img src="/how-to-install-apache-tomcat-8-on-centos-7/5-3.png" alt=""></p>
-<p>在Virtual Host Manager页面中，您可以添加虚拟主机以便为您的应用程序提供服务。</p>
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>你的Tomcat安装完成了！您现在可以自由部署自己的Java Web应用程序了！</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://www.digitalocean.com/community/tutorials/how-to-install-apache-tomcat-8-on-centos-7" target="_blank" rel="noopener">https://www.digitalocean.com/community/tutorials/how-to-install-apache-tomcat-8-on-centos-7</a></p>
-
+        <p>原文： <a href="http://man.linuxde.net/grep" target="_blank" rel="noopener">http://man.linuxde.net/grep</a></p>
+<p><a href="http://man.linuxde.net/sub/%e6%96%87%e4%bb%b6%e8%bf%87%e6%bb%a4%e5%88%86%e5%89%b2%e4%b8%8e%e5%90%88%e5%b9%b6" target="_blank" rel="noopener">文件过滤分割与合并</a></p>
+<p><strong>grep</strong>（global search regular expression(RE) and print out the line，全面搜索正则表达式并把行打印出来）是一种强大的文本搜索工具，它能使用正则表达式搜索文本，并把匹配的行打印出来。</p>
+<h1 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">-a 不要忽略二进制数据。</span><br><span class="line">-A&lt;显示列数&gt; 除了显示符合范本样式的那一行之外，并显示该行之后的内容。</span><br><span class="line">-b 在显示符合范本样式的那一行之外，并显示该行之前的内容。</span><br><span class="line">-c 计算符合范本样式的列数。</span><br><span class="line">-C&lt;显示列数&gt;或-&lt;显示列数&gt;  除了显示符合范本样式的那一列之外，并显示该列之前后的内容。</span><br><span class="line">-d&lt;进行动作&gt; 当指定要查找的是目录而非文件时，必须使用这项参数，否则grep命令将回报信息并停止动作。</span><br><span class="line">-e&lt;范本样式&gt; 指定字符串作为查找文件内容的范本样式。</span><br><span class="line">-E 将范本样式为延伸的普通表示法来使用，意味着使用能使用扩展正则表达式。</span><br><span class="line">-f&lt;范本文件&gt; 指定范本文件，其内容有一个或多个范本样式，让grep查找符合范本条件的文件内容，格式为每一列的范本样式。</span><br><span class="line">-F 将范本样式视为固定字符串的列表。</span><br><span class="line">-G 将范本样式视为普通的表示法来使用。</span><br><span class="line">-h 在显示符合范本样式的那一列之前，不标示该列所属的文件名称。</span><br><span class="line">-H 在显示符合范本样式的那一列之前，标示该列的文件名称。</span><br><span class="line">-i 忽略字符大小写的差别。</span><br><span class="line">-l 列出文件内容符合指定的范本样式的文件名称。</span><br><span class="line">-L 列出文件内容不符合指定的范本样式的文件名称。</span><br><span class="line">-n 在显示符合范本样式的那一列之前，标示出该列的编号。</span><br><span class="line">-q 不显示任何信息。</span><br><span class="line">-R/-r 此参数的效果和指定“-d recurse”参数相同。</span><br><span class="line">-s 不显示错误信息。</span><br><span class="line">-v 反转查找。</span><br><span class="line">-w 只显示全字符合的列。</span><br><span class="line">-x 只显示全列符合的列。</span><br><span class="line">-y 此参数效果跟“-i”相同。</span><br><span class="line">-o 只输出文件中匹配到的部分。</span><br></pre></td></tr></table></figure>
+<h1 id="grep命令常见用法"><a href="#grep命令常见用法" class="headerlink" title="grep命令常见用法"></a>grep命令常见用法</h1><p>在文件中搜索一个单词，命令会返回一个包含<strong>“match_pattern”</strong>的文本行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">grep match_pattern file_name</span><br><span class="line">grep "match_pattern" file_name</span><br></pre></td></tr></table></figure>
+<p>在多个文件中查找：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep "match_pattern" file_1 file_2 file_3 ...</span><br></pre></td></tr></table></figure>
+<p>输出除之外的所有行 <strong>-v</strong> 选项：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -v "match_pattern" file_name</span><br></pre></td></tr></table></figure>
+<p>标记匹配颜色 <strong>–color=auto</strong> 选项：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep "match_pattern" file_name --color=auto</span><br></pre></td></tr></table></figure>
+<p>使用正则表达式 <strong>-E</strong> 选项：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">grep -E "[1-9]+"</span><br><span class="line">或</span><br><span class="line">egrep "[1-9]+"</span><br></pre></td></tr></table></figure>
+<p>只输出文件中匹配到的部分 <strong>-o</strong> 选项：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">echo this is a test line. | grep -o -E "[a-z]+\."</span><br><span class="line">line.</span><br><span class="line"></span><br><span class="line">echo this is a test line. | egrep -o "[a-z]+\."</span><br><span class="line">line.</span><br></pre></td></tr></table></figure>
+<p>统计文件或者文本中包含匹配字符串的行数 <strong>-c</strong> 选项：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -c "text" file_name</span><br></pre></td></tr></table></figure>
+<p>输出包含匹配字符串的行数 <strong>-n</strong> 选项：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">grep "text" -n file_name</span><br><span class="line">或</span><br><span class="line">cat file_name | grep "text" -n</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>多个文件</span><br><span class="line">grep "text" -n file_1 file_2</span><br></pre></td></tr></table></figure>
+<p>打印样式匹配所位于的字符或字节偏移：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">echo gun is not unix | grep -b -o "not"</span><br><span class="line">7:not</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>一行中字符串的字符便宜是从该行的第一个字符开始计算，起始值为0。选项 -b -o 一般总是配合使用。</span><br></pre></td></tr></table></figure>
+<p>搜索多个文件并查找匹配文本在哪些文件中：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -l "text" file1 file2 file3...</span><br></pre></td></tr></table></figure>
+<h1 id="grep递归搜索文件"><a href="#grep递归搜索文件" class="headerlink" title="grep递归搜索文件"></a>grep递归搜索文件</h1><p>在多级目录中对文本进行递归搜索：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">grep "text" . -r -n</span><br><span class="line"><span class="meta">#</span> .表示当前目录。</span><br></pre></td></tr></table></figure>
+<p>忽略匹配样式中的字符大小写：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo "hello world" | grep -i "HELLO"</span><br><span class="line">hello</span><br></pre></td></tr></table></figure>
+<p>选项 <strong>-e</strong> 制动多个匹配样式：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">echo this is a text line | grep -e "is" -e "line" -o</span><br><span class="line">is</span><br><span class="line">line</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>也可以使用-f选项来匹配多个样式，在样式文件中逐行写出需要匹配的字符。</span><br><span class="line">cat patfile</span><br><span class="line">aaa</span><br><span class="line">bbb</span><br><span class="line"></span><br><span class="line">echo aaa bbb ccc ddd eee | grep -f patfile -o</span><br></pre></td></tr></table></figure>
+<p>在grep搜索结果中包括或者排除指定文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>只在目录中所有的.php和.html文件中递归搜索字符"main()"</span><br><span class="line">grep "main()" . -r --include *.&#123;php,html&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>在搜索结果中排除所有README文件</span><br><span class="line">grep "main()" . -r --exclude "README"</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>在搜索结果中排除filelist文件列表里的文件</span><br><span class="line">grep "main()" . -r --exclude-from filelist</span><br></pre></td></tr></table></figure>
+<p>使用0值字节后缀的grep与<a href="http://man.linuxde.net/xargs" target="_blank" rel="noopener">xargs</a>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>测试文件：</span><br><span class="line">echo "aaa" &gt; file1</span><br><span class="line">echo "bbb" &gt; file2</span><br><span class="line">echo "aaa" &gt; file3</span><br><span class="line"></span><br><span class="line">grep "aaa" file* -lZ | xargs -0 rm</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>执行后会删除file1和file3，grep输出用-Z选项来指定以0值字节作为终结符文件名（\0），xargs -0 读取输入并用0值字节终结符分隔文件名，然后删除匹配文件，-Z通常和-l结合使用。</span><br></pre></td></tr></table></figure>
+<p>grep静默输出：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">grep -q "test" filename</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>不会输出任何信息，如果命令运行成功返回0，失败则返回非0值。一般用于条件测试。</span><br></pre></td></tr></table></figure>
+<p>打印出匹配文本之前或者之后的行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>显示匹配某个结果之后的3行，使用 -A 选项：</span><br><span class="line">seq 10 | grep "5" -A 3</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>显示匹配某个结果之前的3行，使用 -B 选项：</span><br><span class="line">seq 10 | grep "5" -B 3</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>显示匹配某个结果的前三行和后三行，使用 -C 选项：</span><br><span class="line">seq 10 | grep "5" -C 3</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>如果匹配结果有多个，会用“--”作为各匹配结果之间的分隔符：</span><br><span class="line">echo -e "a\nb\nc\na\nb\nc" | grep a -A 1</span><br><span class="line">a</span><br><span class="line">b</span><br><span class="line">--</span><br><span class="line">a</span><br><span class="line">b</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -497,7 +463,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://www.melonydi.cn/how-to-install-apache-tomcat-8-on-centos-7/" title="CentOS 7上安装Apache Tomcat 8">http://www.melonydi.cn/how-to-install-apache-tomcat-8-on-centos-7/</a>
+    <a href="http://www.melonydi.cn/linux-cmd/" title="（转）grep命令">http://www.melonydi.cn/linux-cmd/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -512,9 +478,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/翻译/" rel="tag"># 翻译</a>
-          
-            <a href="/tags/软件安装/" rel="tag"># 软件安装</a>
+            <a href="/tags/转载/" rel="tag"># 转载</a>
           
         </div>
       
@@ -542,8 +506,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/jsse-ssl/" rel="next" title="Java-JSSE-SSL/TLS编程代码实例-双向认证">
-                <i class="fa fa-chevron-left"></i> Java-JSSE-SSL/TLS编程代码实例-双向认证
+              <a href="/tomcat-ssl-two-way-auth/" rel="next" title="java tomcat 搭建SSL双向认证以及httpclient代码">
+                <i class="fa fa-chevron-left"></i> java tomcat 搭建SSL双向认证以及httpclient代码
               </a>
             
           </div>
@@ -551,10 +515,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/tomcat-ssl-two-way-auth/" rel="prev" title="java tomcat 搭建SSL双向认证以及httpclient代码">
-                java tomcat 搭建SSL双向认证以及httpclient代码 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -731,7 +691,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Java"><span class="nav-number">2.</span> <span class="nav-text">安装Java</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Tomcat"><span class="nav-number">3.</span> <span class="nav-text">安装Tomcat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置Tomcat-Web管理界面"><span class="nav-number">4.</span> <span class="nav-text">配置Tomcat Web管理界面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#访问Web界面"><span class="nav-number">5.</span> <span class="nav-text">访问Web界面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">6.</span> <span class="nav-text">最后</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">7.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#选项"><span class="nav-number">1.</span> <span class="nav-text">选项</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#grep命令常见用法"><span class="nav-number">2.</span> <span class="nav-text">grep命令常见用法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#grep递归搜索文件"><span class="nav-number">3.</span> <span class="nav-text">grep递归搜索文件</span></a></li></ol></div>
             
 
           </div>
