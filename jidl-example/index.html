@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="IDL,翻译," />
+  <meta name="keywords" content="翻译,IDL," />
 
 
 
@@ -82,14 +82,14 @@
 
 
 <meta name="description" content="本文档包括：  应用的示例代码 一个简单的“Hello World”程序的IDL 使用默认服务器端实现创建对象，并通过命名服务发布该对象的服务端 一个知道对象名称的客户端，从命名服务检索的对象的引用，并调用对象 编译和运行程序的说明  接口定义（Hello.idl)创建CORBA应用程序的第一步是使用OMG的接口定义语言（IDL）指定所有对象及其接口。IDL具有类似于C ++的语法，可用于定义模块">
-<meta name="keywords" content="IDL,翻译">
+<meta name="keywords" content="翻译,IDL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java IDL：一个“Hello World”程序">
 <meta property="og:url" content="http://www.melonydi.cn/jidl-example/index.html">
 <meta property="og:site_name" content="彭启骏的个人博客">
 <meta property="og:description" content="本文档包括：  应用的示例代码 一个简单的“Hello World”程序的IDL 使用默认服务器端实现创建对象，并通过命名服务发布该对象的服务端 一个知道对象名称的客户端，从命名服务检索的对象的引用，并调用对象 编译和运行程序的说明  接口定义（Hello.idl)创建CORBA应用程序的第一步是使用OMG的接口定义语言（IDL）指定所有对象及其接口。IDL具有类似于C ++的语法，可用于定义模块">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-01T10:00:24.779Z">
+<meta property="og:updated_time" content="2019-01-01T13:34:40.465Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java IDL：一个“Hello World”程序">
 <meta name="twitter:description" content="本文档包括：  应用的示例代码 一个简单的“Hello World”程序的IDL 使用默认服务器端实现创建对象，并通过命名服务发布该对象的服务端 一个知道对象名称的客户端，从命名服务检索的对象的引用，并调用对象 编译和运行程序的说明  接口定义（Hello.idl)创建CORBA应用程序的第一步是使用OMG的接口定义语言（IDL）指定所有对象及其接口。IDL具有类似于C ++的语法，可用于定义模块">
@@ -320,7 +320,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-01-01T18:00:24+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-01-01T21:34:40+08:00">
                 2019-01-01
               </time>
             
@@ -391,7 +391,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,917
+                  2,902
                 </span>
               
 
@@ -439,7 +439,7 @@
 <h1 id="接口定义（Hello-idl"><a href="#接口定义（Hello-idl" class="headerlink" title="接口定义（Hello.idl)"></a>接口定义（Hello.idl)</h1><p>创建CORBA应用程序的第一步是使用OMG的接口定义语言（IDL）指定所有对象及其接口。IDL具有类似于C ++的语法，可用于定义模块，接口，数据结构等。IDL可以映射到各种编程语言。Java的IDL映射在<a href="https://docs.oracle.com/javase/7/docs/technotes/guides/idl/mapping/jidlMapping.html" target="_blank" rel="noopener">IDL中</a>汇总<a href="https://docs.oracle.com/javase/7/docs/technotes/guides/idl/mapping/jidlMapping.html" target="_blank" rel="noopener">为Java语言映射摘要</a>。</p>
 <p>以下代码用OMG IDL编写，描述了一个CORBA对象，其<code>sayHello（）</code>操作返回一个字符串，其<code>shutdown（）</code>方法关闭ORB。要了解有关OMG IDL语法和语义的更多信息，请阅读<a href="http://www.omg.org/cgi-bin/doc?formal/99-10-07" target="_blank" rel="noopener">CORBA 2.3.1规范的</a>第3章。</p>
 <p><strong><em>Hello.idl</em></strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> HelloApp</span><br><span class="line">&#123;</span><br><span class="line">  interface Hello</span><br><span class="line">  &#123;</span><br><span class="line">  <span class="function"><span class="built_in">string</span> <span class="title">sayHello</span><span class="params">()</span></span>;</span><br><span class="line">  <span class="function">oneway <span class="keyword">void</span> <span class="title">shutdown</span><span class="params">()</span></span>;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">he</span><br></pre></td></tr></table></figure>
 <p><strong>注意</strong>：</p>
 <p>用OMG IDL中编写代码时，请勿使用接口名称作为模块的名称。这样做可能会在使用来自不同供应商的工具进行编译时产生不一致的结果，从而危及代码的可移植性。例如，可以使用Sun Microsystems的IDL到Java编译器编译包含相同名称的代码，并获得一个结果。使用其他供应商的IDL编译到Java编译器的相同代码可能会产生不同的结果。</p>
 <p>要完成应用程序，只需提供server（<code>HelloServer.java</code>）和client（<code>HelloClient.java</code>）实现。</p>
@@ -501,10 +501,10 @@
 </ul>
 </li>
 <li><p>编译<code>.java</code>文件，包括存根和骨架（位于HelloApp目录中）。此步骤假定java / bin目录包含在路径中。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javac * .java HelloApp / * .java</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javac *.java HelloApp/*.java</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>开始<code>orbd</code>要从UNIX命令shell 启动<code>orbd</code>，请输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">orbd -ORBInitialPort 1050＆</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">orbd -ORBInitialPort 1050&amp;</span><br></pre></td></tr></table></figure>
 <p>从MS-DOS系统提示符（Windows），输入：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">start orbd -ORBInitialPort 1050</span><br></pre></td></tr></table></figure>
 <p>请注意，<code>1050</code>是您希望名称服务器运行的端口。所述<code>-ORBInitialPort</code>参数是必需的命令行参数。请注意，使用Solaris软件时，必须成为root用户才能在1024以下的端口上启动进程。因此，建议您使用大于或等于1024的端口号。</p>
@@ -512,7 +512,7 @@
 </li>
 <li><p>启动Hello服务器：</p>
 <p>要从UNIX命令shell启动Hello服务器，请输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java HelloServer -ORBInitialPort 1050 -ORBInitialHost localhost＆</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java HelloServer -ORBInitialPort 1050 -ORBInitialHost localhost&amp;</span><br></pre></td></tr></table></figure>
 <p>从MS-DOS系统提示符（Windows），输入：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">start java HelloServer -ORBInitialPort 1050 -ORBInitialHost localhost</span><br></pre></td></tr></table></figure>
 <p>您将看到<code>HelloServer准备好并等待...</code>服务器启动时。</p>
@@ -563,9 +563,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/IDL/" rel="tag"># IDL</a>
-          
             <a href="/tags/翻译/" rel="tag"># 翻译</a>
+          
+            <a href="/tags/IDL/" rel="tag"># IDL</a>
           
         </div>
       
@@ -593,8 +593,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/linux-get-pid/" rel="next" title="Bash Shell 获取进程 PID">
-                <i class="fa fa-chevron-left"></i> Bash Shell 获取进程 PID
+              <a href="/linux-cmd/" rel="next" title="（转）grep命令">
+                <i class="fa fa-chevron-left"></i> （转）grep命令
               </a>
             
           </div>
@@ -602,6 +602,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/centos-firewall-cmd/" rel="prev" title="Centos 7一些防火墙命令">
+                Centos 7一些防火墙命令 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
