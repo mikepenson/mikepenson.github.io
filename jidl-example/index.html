@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="TMiNaJb65uTTRcxhjsIH3-e4pErkpgqa4uRUnKrt1nI" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="IDL,翻译," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本文档包括：  应用的示例代码 一个简单的“Hello World”程序的IDL 使用默认服务器端实现创建对象，并通过命名服务发布该对象的服务端 一个知道对象名称的客户端，从命名服务检索的对象的引用，并调用对象 编译和运行程序的说明  接口定义（Hello.idl)创建CORBA应用程序的第一步是使用OMG的接口定义语言（IDL）指定所有对象及其接口。IDL具有类似于C ++的语法，可用于定义模块">
+<meta name="keywords" content="IDL,翻译">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java IDL：一个“Hello World”程序">
+<meta property="og:url" content="http://www.melonydi.cn/jidl-example/index.html">
+<meta property="og:site_name" content="彭启骏的个人博客">
+<meta property="og:description" content="本文档包括：  应用的示例代码 一个简单的“Hello World”程序的IDL 使用默认服务器端实现创建对象，并通过命名服务发布该对象的服务端 一个知道对象名称的客户端，从命名服务检索的对象的引用，并调用对象 编译和运行程序的说明  接口定义（Hello.idl)创建CORBA应用程序的第一步是使用OMG的接口定义语言（IDL）指定所有对象及其接口。IDL具有类似于C ++的语法，可用于定义模块">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-01-01T10:00:24.779Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java IDL：一个“Hello World”程序">
+<meta name="twitter:description" content="本文档包括：  应用的示例代码 一个简单的“Hello World”程序的IDL 使用默认服务器端实现创建对象，并通过命名服务发布该对象的服务端 一个知道对象名称的客户端，从命名服务检索的对象的引用，并调用对象 编译和运行程序的说明  接口定义（Hello.idl)创建CORBA应用程序的第一步是使用OMG的接口定义语言（IDL）指定所有对象及其接口。IDL具有类似于C ++的语法，可用于定义模块">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.melonydi.cn/jidl-example/"/>
+
+
+
+
+
+  <title>Java IDL：一个“Hello World”程序 | 彭启骏的个人博客</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?fd604c53dccecc50e79ba2657905d168";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">彭启骏的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.melonydi.cn/jidl-example/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="彭启骏">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avator.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="彭启骏的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Java IDL：一个“Hello World”程序</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-01T17:06:26+08:00">
+                2019-01-01
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-01-01T18:00:24+08:00">
+                2019-01-01
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/jidl-example/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/jidl-example/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/jidl-example/" class="leancloud_visitors" data-flag-title="Java IDL：一个“Hello World”程序">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,917
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  12
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文档包括：</p>
+<ul>
+<li>应用的示例代码</li>
+<li>一个简单的“Hello World”程序的IDL</li>
+<li>使用默认服务器端实现创建对象，并通过命名服务发布该对象的服务端</li>
+<li>一个知道对象名称的客户端，从命名服务检索的对象的引用，并调用对象</li>
+<li>编译和运行程序的说明</li>
+</ul>
+<h1 id="接口定义（Hello-idl"><a href="#接口定义（Hello-idl" class="headerlink" title="接口定义（Hello.idl)"></a>接口定义（Hello.idl)</h1><p>创建CORBA应用程序的第一步是使用OMG的接口定义语言（IDL）指定所有对象及其接口。IDL具有类似于C ++的语法，可用于定义模块，接口，数据结构等。IDL可以映射到各种编程语言。Java的IDL映射在<a href="https://docs.oracle.com/javase/7/docs/technotes/guides/idl/mapping/jidlMapping.html" target="_blank" rel="noopener">IDL中</a>汇总<a href="https://docs.oracle.com/javase/7/docs/technotes/guides/idl/mapping/jidlMapping.html" target="_blank" rel="noopener">为Java语言映射摘要</a>。</p>
+<p>以下代码用OMG IDL编写，描述了一个CORBA对象，其<code>sayHello（）</code>操作返回一个字符串，其<code>shutdown（）</code>方法关闭ORB。要了解有关OMG IDL语法和语义的更多信息，请阅读<a href="http://www.omg.org/cgi-bin/doc?formal/99-10-07" target="_blank" rel="noopener">CORBA 2.3.1规范的</a>第3章。</p>
+<p><strong><em>Hello.idl</em></strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> HelloApp</span><br><span class="line">&#123;</span><br><span class="line">  interface Hello</span><br><span class="line">  &#123;</span><br><span class="line">  <span class="function"><span class="built_in">string</span> <span class="title">sayHello</span><span class="params">()</span></span>;</span><br><span class="line">  <span class="function">oneway <span class="keyword">void</span> <span class="title">shutdown</span><span class="params">()</span></span>;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong>：</p>
+<p>用OMG IDL中编写代码时，请勿使用接口名称作为模块的名称。这样做可能会在使用来自不同供应商的工具进行编译时产生不一致的结果，从而危及代码的可移植性。例如，可以使用Sun Microsystems的IDL到Java编译器编译包含相同名称的代码，并获得一个结果。使用其他供应商的IDL编译到Java编译器的相同代码可能会产生不同的结果。</p>
+<p>要完成应用程序，只需提供server（<code>HelloServer.java</code>）和client（<code>HelloClient.java</code>）实现。</p>
+<h1 id="服务端实现-HelloServer-java"><a href="#服务端实现-HelloServer-java" class="headerlink" title="服务端实现 (HelloServer.java)"></a>服务端实现 (<code>HelloServer.java</code>)</h1><p>示例服由两个类组成，即servant和server。servant，<code>HelloImpl</code>，是<code>Hello</code> IDL接口的实现; 每个<code>Hello</code>实例都由<code>HelloImpl</code>实例实现。servant是<code>HelloPOA</code>的子类，它由 <code>idlj</code>编译器从示例IDL生成。servant为每个IDL操作包含一个方法，在本例中为 <code>sayHello（）</code>和<code>shutdown（）</code>方法。Servant方法就像普通的Java方法一样; 处理ORB的额外代码，包含编组参数和结果等，由骨架提供。</p>
+<p>在<code>HelloServer</code>类有服务端<code>main（）</code> 方法，其中：</p>
+<ul>
+<li>创建并初始化ORB实例</li>
+<li>获取对根POA的引用并激活 <code>POAManager</code></li>
+<li>创建一个servant实例（一个CORBA <code>Hello</code>对象的实现 ）并告诉ORB它</li>
+<li>获取命名上下文的CORBA对象引用，在该命名上下文中注册新的CORBA对象</li>
+<li>获取根命名上下文</li>
+<li>在名称“Hello”下的命名上下文中注册新对象</li>
+<li>等待从客户端调用新对象</li>
+</ul>
+<p>此示例提供了一个临时对象服务器的示例。有关具有持久对象服务器的“Hello World”程序的<a href="https://docs.oracle.com/javase/7/docs/technotes/guides/idl/jidlExample2.html" target="_blank" rel="noopener">示例</a>，请参见<a href="https://docs.oracle.com/javase/7/docs/technotes/guides/idl/jidlExample2.html" target="_blank" rel="noopener">示例2：具有持久状态的Hello World</a>。有关CORBA服务器的更多讨论，请参阅<a href="https://docs.oracle.com/javase/7/docs/technotes/guides/idl/jidlServers.html" target="_blank" rel="noopener"><em>开发服务器</em></a>。</p>
+<p>有关代码的更多讨论，请参阅详细的教程主题 <a href="https://docs.oracle.com/javase/7/docs/technotes/guides/idl/tutorial/GSserver.html" target="_blank" rel="noopener">Java IDL入门：开发Hello World Server</a>。</p>
+<p><strong><em>HelloServer.java</em></strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// HelloServer.java</span></span><br><span class="line"><span class="comment">// Copyright and License </span></span><br><span class="line"><span class="keyword">import</span> HelloApp.*;</span><br><span class="line"><span class="keyword">import</span> org.omg.CosNaming.*;</span><br><span class="line"><span class="keyword">import</span> org.omg.CosNaming.NamingContextPackage.*;</span><br><span class="line"><span class="keyword">import</span> org.omg.CORBA.*;</span><br><span class="line"><span class="keyword">import</span> org.omg.PortableServer.*;</span><br><span class="line"><span class="keyword">import</span> org.omg.PortableServer.POA;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Properties;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HelloImpl</span> <span class="keyword">extends</span> <span class="title">HelloPOA</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> ORB orb;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setORB</span><span class="params">(ORB orb_val)</span> </span>&#123;</span><br><span class="line">    orb = orb_val; </span><br><span class="line">  &#125;</span><br><span class="line">    </span><br><span class="line">  <span class="comment">// implement sayHello() method</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">sayHello</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"\nHello world !!\n"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">    </span><br><span class="line">  <span class="comment">// implement shutdown() method</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">shutdown</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    orb.shutdown(<span class="keyword">false</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloServer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">      <span class="comment">// create and initialize the ORB</span></span><br><span class="line">      ORB orb = ORB.init(args, <span class="keyword">null</span>);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// get reference to rootpoa &amp; activate the POAManager</span></span><br><span class="line">      POA rootpoa = POAHelper.narrow(orb.resolve_initial_references(<span class="string">"RootPOA"</span>));</span><br><span class="line">      rootpoa.the_POAManager().activate();</span><br><span class="line"></span><br><span class="line">      <span class="comment">// create servant and register it with the ORB</span></span><br><span class="line">      HelloImpl helloImpl = <span class="keyword">new</span> HelloImpl();</span><br><span class="line">      helloImpl.setORB(orb); </span><br><span class="line"></span><br><span class="line">      <span class="comment">// get object reference from the servant</span></span><br><span class="line">      org.omg.CORBA.Object ref = rootpoa.servant_to_reference(helloImpl);</span><br><span class="line">      Hello href = HelloHelper.narrow(ref);</span><br><span class="line">          </span><br><span class="line">      <span class="comment">// get the root naming context</span></span><br><span class="line">      <span class="comment">// NameService invokes the name service</span></span><br><span class="line">      org.omg.CORBA.Object objRef =</span><br><span class="line">          orb.resolve_initial_references(<span class="string">"NameService"</span>);</span><br><span class="line">      <span class="comment">// Use NamingContextExt which is part of the Interoperable</span></span><br><span class="line">      <span class="comment">// Naming Service (INS) specification.</span></span><br><span class="line">      NamingContextExt ncRef = NamingContextExtHelper.narrow(objRef);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// bind the Object Reference in Naming</span></span><br><span class="line">      String name = <span class="string">"Hello"</span>;</span><br><span class="line">      NameComponent path[] = ncRef.to_name( name );</span><br><span class="line">      ncRef.rebind(path, href);</span><br><span class="line"></span><br><span class="line">      System.out.println(<span class="string">"HelloServer ready and waiting ..."</span>);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// wait for invocations from clients</span></span><br><span class="line">      orb.run();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        System.err.println(<span class="string">"ERROR: "</span> + e);</span><br><span class="line">        e.printStackTrace(System.out);</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(<span class="string">"HelloServer Exiting ..."</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="客户端实现-HelloClient-java"><a href="#客户端实现-HelloClient-java" class="headerlink" title="客户端实现 (HelloClient.java)"></a>客户端实现 (<code>HelloClient.java</code>)</h1><p>客户端示例程序如下：</p>
+<ul>
+<li>创建和初始化一个orb</li>
+<li>获得对根命名上下文的引用</li>
+<li>在命名上下文中查找“Hello”并接收对该CORBA对象的引用</li>
+<li>调用对象的sayHello（）和shutdown（）操作并打印结果</li>
+</ul>
+<p>有关代码详细信息的更多讨论，请参阅<a href="https://docs.oracle.com/javase/7/docs/technotes/guides/idl/tutorial/GSapp.html" target="_blank" rel="noopener">Java IDL入门：开发客户端应用程序</a>。</p>
+<p><strong><em>HelloClient.java</em></strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Copyright and License </span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> HelloApp.*;</span><br><span class="line"><span class="keyword">import</span> org.omg.CosNaming.*;</span><br><span class="line"><span class="keyword">import</span> org.omg.CosNaming.NamingContextPackage.*;</span><br><span class="line"><span class="keyword">import</span> org.omg.CORBA.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloClient</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">  <span class="keyword">static</span> Hello helloImpl;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">      <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="comment">// create and initialize the ORB</span></span><br><span class="line">        ORB orb = ORB.init(args, <span class="keyword">null</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// get the root naming context</span></span><br><span class="line">        org.omg.CORBA.Object objRef = </span><br><span class="line">            orb.resolve_initial_references(<span class="string">"NameService"</span>);</span><br><span class="line">        <span class="comment">// Use NamingContextExt instead of NamingContext. This is </span></span><br><span class="line">        <span class="comment">// part of the Interoperable naming Service.  </span></span><br><span class="line">        NamingContextExt ncRef = NamingContextExtHelper.narrow(objRef);</span><br><span class="line"> </span><br><span class="line">        <span class="comment">// resolve the Object Reference in Naming</span></span><br><span class="line">        String name = <span class="string">"Hello"</span>;</span><br><span class="line">        helloImpl = HelloHelper.narrow(ncRef.resolve_str(name));</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"Obtained a handle on server object: "</span> + helloImpl);</span><br><span class="line">        System.out.println(helloImpl.sayHello());</span><br><span class="line">        helloImpl.shutdown();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">          System.out.println(<span class="string">"ERROR : "</span> + e) ;</span><br><span class="line">          e.printStackTrace(System.out);</span><br><span class="line">         &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="构建和运行Hello-World"><a href="#构建和运行Hello-World" class="headerlink" title="构建和运行Hello World"></a>构建和运行Hello World</h1><p>尽管设计简单，Hello World程序允许您学习和试验开发几乎所有使用<a href="https://docs.oracle.com/javase/7/docs/technotes/guides/idl/jidlGlossary.html#invocation" target="_blank" rel="noopener">静态调用的</a> CORBA程序所需的所有任务。在编译时已知对象的接口时，将使用静态调用，该调用使用客户端存根进行调用，并使用服务器框架来调用正在调用的服务。如果在编译时未知接口，则必须使用<a href="https://docs.oracle.com/javase/7/docs/technotes/guides/idl/jidlGlossary.html#DII" target="_blank" rel="noopener">动态调用</a>。</p>
+<p>此示例需要命名服务，该服务是一种CORBA服务，它允许通过将名称绑定到对象引用来命名<a href="https://docs.oracle.com/javase/7/docs/technotes/guides/idl/jidlGlossary.html#CORBA%20object" target="_blank" rel="noopener">CORBA对象</a>。的<a href="https://docs.oracle.com/javase/7/docs/technotes/guides/idl/jidlGlossary.html#name%20binding" target="_blank" rel="noopener">名称绑定</a>可被存储在命名服务，而客户端可以提供名称，以获得所期望的对象的参考。此版本的Java SE附带的命名服务的两个选项包括<code>orbd</code>，一个包含一个Bootstrap服务、一个瞬态命名服务，一个持久命名服务和一个服务器管理器的守护进程，以及 一个为其提供向后兼容的临时命名服务<code>tnameserv</code>。此示例使用<code>orbd</code>。</p>
+<p>运行此示例时，请记住，在使用Solaris软件时，必须成为root用户才能在1024以下的端口上启动进程。因此，建议您使用大于或等于1024的端口号。 <code>-ORBInitialPort</code>选项用于覆盖此示例中的默认端口号。以下说明假定您可以将端口1050用于Java IDL对象请求代理守护程序<code>orbd</code>。如有必要，您可以替换其他端口。在Windows计算机上运行这些示例时，请在路径名中添加反斜杠（\）。</p>
+<p>要在开发计算机上运行此客户端 - 服务器应用程序：</p>
+<ol>
+<li><p>切换到包含文件<code>Hello.idl</code>的目录 。</p>
+</li>
+<li><p>在IDL文件上运行IDL-to-Java编译器<code>idlj</code>以创建存根和骨架。此步骤假定您已在路径中包含java / bin目录的路径。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">idlj -fall Hello.idl</span><br></pre></td></tr></table></figure>
+<p>必须将<code>-fall</code>选项与<code>idlj</code> 编译器一起使用才能生成客户端和服务器端绑定。此命令行将生成默认的服务器端绑定，该绑定采用POA继承服务器端模型。有关<code>idlj</code>选项的更多信息，请参阅<a href="https://docs.oracle.com/javase/7/docs/technotes/tools/share/idlj.html" target="_blank" rel="noopener">IDL-to-Java编译器选项</a>。</p>
+<p>该<code>IDLJ</code>编译器会生成大量的文件。生成的实际文件数取决于编译IDL文件时选择的选项。生成的文件提供标准功能，因此您可以忽略它们，直到部署和运行程序为止。<code>idlj</code> 编译器使用<code>-fall</code>命令行选项为<code>Hello.idl</code>生成的文件：</p>
+<ul>
+<li><p>HelloPOA.java</p>
+<p>此抽象类是基于流的<a href="https://docs.oracle.com/javase/7/docs/technotes/guides/idl/jidlGlossary.html#server%20skeleton" target="_blank" rel="noopener">服务器框架</a>，为<a href="https://docs.oracle.com/javase/7/docs/technotes/guides/idl/jidlGlossary.html#server%20skeleton" target="_blank" rel="noopener">服务器</a>提供基本的CORBA功能。它扩展了 <a href="https://docs.oracle.com/javase/7/docs/api/org/omg/PortableServer/Servant.html" target="_blank" rel="noopener"><code>org.omg.PortableServer.Servant</code></a>，并实现了<code>InvokeHandler</code>接口和<code>HelloOperations</code>接口。服务器类 <code>HelloImpl</code>扩展了<code>HelloPOA</code>。</p>
+</li>
+<li><p>_HelloStub.java</p>
+<p>此类是<a href="https://docs.oracle.com/javase/7/docs/technotes/guides/idl/jidlGlossary.html#client%20stub" target="_blank" rel="noopener">客户端存根</a>，为<a href="https://docs.oracle.com/javase/7/docs/technotes/guides/idl/jidlGlossary.html#client%20stub" target="_blank" rel="noopener">客户端</a>提供CORBA功能。它扩展了 <code>org.omg.CORBA.portable.ObjectImpl</code>并实现了 <code>Hello.java</code>接口。</p>
+</li>
+<li><p>Hello.java</p>
+<p>该接口包含我们的IDL接口的Java版本。所述<code>Hello.java</code>界面延伸 <code>的org.omg.CORBA.Object</code>，提供标准的CORBA对象的功能性。它还扩展了<code>HelloOperations</code> 接口和<code>org.omg.CORBA.portable.IDLEntity</code>。</p>
+</li>
+<li><p>HelloHelper.java</p>
+<p>此类提供辅助功能，特别是将CORBA <a href="https://docs.oracle.com/javase/7/docs/technotes/guides/idl/jidlGlossary.html#object%20reference" target="_blank" rel="noopener">对象引用</a>强制转换为正确类型所需的 <code>narrow（）</code>方法.Helper类负责读取和写入CORBA流的数据类型，以及从<code>Any</code> 中插入和提取数据类型。Holder类委托Helper类中的方法进行读写。</p>
+</li>
+<li><p>HelloHolder.java</p>
+<p>最后一个类包含<code>Hello</code>类型的公共实例成员 。只要IDL类型是<code>out</code>或 <code>inout</code>参数，就使用Holder类。它为<code>org.omg.CORBA.portable.OutputStream</code>和 <code>org.omg.CORBA.portable.InputStream</code>参数提供了操作，CORBA允许这些参数，但它们不容易映射到Java的语义。Holder类委托Helper类中的方法进行读写。它实现了<code>org.omg.CORBA.portable.Streamable</code>。</p>
+</li>
+<li><p>HelloOperations.java</p>
+<p>该接口包含<code>sayHello（）</code>和 <code>shutdown（）方法</code>。IDL-to-Java映射将IDL接口上定义的所有操作放入此文件中，该文件由存根和骨架共享。</p>
+</li>
+</ul>
+</li>
+<li><p>编译<code>.java</code>文件，包括存根和骨架（位于HelloApp目录中）。此步骤假定java / bin目录包含在路径中。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javac * .java HelloApp / * .java</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>开始<code>orbd</code>要从UNIX命令shell 启动<code>orbd</code>，请输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">orbd -ORBInitialPort 1050＆</span><br></pre></td></tr></table></figure>
+<p>从MS-DOS系统提示符（Windows），输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">start orbd -ORBInitialPort 1050</span><br></pre></td></tr></table></figure>
+<p>请注意，<code>1050</code>是您希望名称服务器运行的端口。所述<code>-ORBInitialPort</code>参数是必需的命令行参数。请注意，使用Solaris软件时，必须成为root用户才能在1024以下的端口上启动进程。因此，建议您使用大于或等于1024的端口号。</p>
+<p>有关如何在两台计算机上运行此程序的示例，请参阅 <a href="https://docs.oracle.com/javase/7/docs/technotes/guides/idl/tutorial/jidl2machines.html" target="_blank" rel="noopener">在2台计算机上运行Hello World程序</a>。</p>
+</li>
+<li><p>启动Hello服务器：</p>
+<p>要从UNIX命令shell启动Hello服务器，请输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java HelloServer -ORBInitialPort 1050 -ORBInitialHost localhost＆</span><br></pre></td></tr></table></figure>
+<p>从MS-DOS系统提示符（Windows），输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">start java HelloServer -ORBInitialPort 1050 -ORBInitialHost localhost</span><br></pre></td></tr></table></figure>
+<p>您将看到<code>HelloServer准备好并等待...</code>服务器启动时。</p>
+<p>对于此示例，您可以省略<code>-ORBInitialHost localhost，</code>因为名称服务器与Hello服务器在同一主机上运行。如果名称服务器在其他主机上运行，请使用<code>-ORBInitialHost</code><em>nameserverhost</em>指定运行IDL名称服务器的主机。</p>
+<p>指定名称服务器（<code>orbd</code>）端口，如上一步所述，例如<code>-ORBInitialPort 1050</code>。</p>
+</li>
+<li><p>运行客户端应用程序：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java HelloClient -ORBInitialPort 1050 -ORBInitialHost localhost</span><br></pre></td></tr></table></figure>
+<p>当客户端运行时，您将在终端上看到如下响应： <code>Obtained a handle on server object: IOR: (binary code) Hello World! HelloServer exiting...</code></p>
+<p>对于此示例，您可以省略<code>-ORBInitialHost localhost，</code>因为名称服务器与Hello客户端在同一主机上运行。如果名称服务器在其他主机上运行，请使用<code>-ORBInitialHost</code><em>nameserverhost</em>指定运行IDL名称服务器的主机。</p>
+<p>指定名称服务器（<code>orbd</code>）端口，如上一步所述，例如<code>-ORBInitialPort 1050</code>。</p>
+</li>
+</ol>
+<p>完成本教程后，请务必关闭或终止名称服务器（<code>orbd</code>）。要从DOS提示符执行此操作，请选择正在运行服务器的窗口，然后输入 <code>Ctrl + C</code>将其关闭。要从Unix shell执行此操作，请找到该进程并将其终止。服务器将继续等待调用，直到它被明确停止。</p>
+<p><strong>在两台计算机上运行Hello World应用程序</strong>描述了一种在两台计算机（客户端和服务器）之间分发简单应用程序的方法。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    彭启骏
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.melonydi.cn/jidl-example/" title="Java IDL：一个“Hello World”程序">http://www.melonydi.cn/jidl-example/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/IDL/" rel="tag"># IDL</a>
+          
+            <a href="/tags/翻译/" rel="tag"># 翻译</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/linux-get-pid/" rel="next" title="Bash Shell 获取进程 PID">
+                <i class="fa fa-chevron-left"></i> Bash Shell 获取进程 PID
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avator.jpg"
+                alt="彭启骏" />
+            
+              <p class="site-author-name" itemprop="name">彭启骏</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/mikepenson" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:1327876510@qq.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://pengzhendong.cn/" title="Randy's Notes" target="_blank">Randy's Notes</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://tutorials.jenkov.com/" title="Jenkov.com" target="_blank">Jenkov.com</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#接口定义（Hello-idl"><span class="nav-number">1.</span> <span class="nav-text">接口定义（Hello.idl)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#服务端实现-HelloServer-java"><span class="nav-number">2.</span> <span class="nav-text">服务端实现 (HelloServer.java)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#客户端实现-HelloClient-java"><span class="nav-number">3.</span> <span class="nav-text">客户端实现 (HelloClient.java)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#构建和运行Hello-World"><span class="nav-number">4.</span> <span class="nav-text">构建和运行Hello World</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">彭启骏</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+      <style>
+        a.gitment-editor-footer-tip { display: none; }
+        .gitment-container.gitment-footer-container { display: none; }
+      </style>
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'mikepenson',
+            repo: 'gitment-comments',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '4384eacfb9716900b60cd28d3f6ab1a4c8536faf',
+            
+                client_id: '5c8ec48aca8c627ba648'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("7RElBhJNLtL6xdML3tq3wgHd-gzGzoHsz", "XC3GIsa3rbgHF4JH2EIsKzCA");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "default";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

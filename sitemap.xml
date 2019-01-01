@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.melonydi.cn/jidl-example/</loc>
+    
+    <lastmod>2019-01-01T10:00:24.779Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.melonydi.cn/linux-get-pid/</loc>
+    
+    <lastmod>2018-12-17T16:09:03.871Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.melonydi.cn/linux-cmd/</loc>
     
     <lastmod>2018-12-10T15:36:54.794Z</lastmod>

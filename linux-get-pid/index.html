@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="翻译,软件安装," />
+  <meta name="keywords" content="转载,Shell," />
 
 
 
@@ -81,22 +81,18 @@
 
 
 
-<meta name="description" content="介绍Apache Tomcat是一个Web服务器和servlet容器，用于为Java应用程序提供服务。Tomcat是Apache Software Foundation发布的Java Servlet和JavaServer Pages技术的开源实现。本教程介绍CentOS 7服务器上Tomcat 8的最新版本的基本安装和一些配置。 安装Java下载jdk 1.8  https://www.oracl">
-<meta name="keywords" content="翻译,软件安装">
+<meta name="description" content="转载地址：http://weyo.me/pages/techs/linux-get-pid/  导读Linux 的交互式 Shell 与 Shell 脚本存在一定的差异，主要是由于后者存在一个独立的运行进程，因此在获取进程 pid 上二者也有所区别。   交互式 Bash Shell 获取进程 pid在已知进程名(name)的前提下，交互式 Shell 获取进程 pid 有很多种方法，典型的通过">
+<meta name="keywords" content="转载,Shell">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CentOS 7上安装Apache Tomcat 8">
-<meta property="og:url" content="http://www.melonydi.cn/how-to-install-apache-tomcat-8-on-centos-7/index.html">
+<meta property="og:title" content="Bash Shell 获取进程 PID">
+<meta property="og:url" content="http://www.melonydi.cn/linux-get-pid/index.html">
 <meta property="og:site_name" content="彭启骏的个人博客">
-<meta property="og:description" content="介绍Apache Tomcat是一个Web服务器和servlet容器，用于为Java应用程序提供服务。Tomcat是Apache Software Foundation发布的Java Servlet和JavaServer Pages技术的开源实现。本教程介绍CentOS 7服务器上Tomcat 8的最新版本的基本安装和一些配置。 安装Java下载jdk 1.8  https://www.oracl">
+<meta property="og:description" content="转载地址：http://weyo.me/pages/techs/linux-get-pid/  导读Linux 的交互式 Shell 与 Shell 脚本存在一定的差异，主要是由于后者存在一个独立的运行进程，因此在获取进程 pid 上二者也有所区别。   交互式 Bash Shell 获取进程 pid在已知进程名(name)的前提下，交互式 Shell 获取进程 pid 有很多种方法，典型的通过">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://www.melonydi.cn/how-to-install-apache-tomcat-8-on-centos-7/5-1.png">
-<meta property="og:image" content="http://www.melonydi.cn/how-to-install-apache-tomcat-8-on-centos-7/5-2.png">
-<meta property="og:image" content="http://www.melonydi.cn/how-to-install-apache-tomcat-8-on-centos-7/5-3.png">
-<meta property="og:updated_time" content="2018-12-09T05:31:14.549Z">
+<meta property="og:updated_time" content="2018-12-17T16:09:03.871Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CentOS 7上安装Apache Tomcat 8">
-<meta name="twitter:description" content="介绍Apache Tomcat是一个Web服务器和servlet容器，用于为Java应用程序提供服务。Tomcat是Apache Software Foundation发布的Java Servlet和JavaServer Pages技术的开源实现。本教程介绍CentOS 7服务器上Tomcat 8的最新版本的基本安装和一些配置。 安装Java下载jdk 1.8  https://www.oracl">
-<meta name="twitter:image" content="http://www.melonydi.cn/how-to-install-apache-tomcat-8-on-centos-7/5-1.png">
+<meta name="twitter:title" content="Bash Shell 获取进程 PID">
+<meta name="twitter:description" content="转载地址：http://weyo.me/pages/techs/linux-get-pid/  导读Linux 的交互式 Shell 与 Shell 脚本存在一定的差异，主要是由于后者存在一个独立的运行进程，因此在获取进程 pid 上二者也有所区别。   交互式 Bash Shell 获取进程 pid在已知进程名(name)的前提下，交互式 Shell 获取进程 pid 有很多种方法，典型的通过">
 
 
 
@@ -126,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://www.melonydi.cn/how-to-install-apache-tomcat-8-on-centos-7/"/>
+  <link rel="canonical" href="http://www.melonydi.cn/linux-get-pid/"/>
 
 
 
 
 
-  <title>CentOS 7上安装Apache Tomcat 8 | 彭启骏的个人博客</title>
+  <title>Bash Shell 获取进程 PID | 彭启骏的个人博客</title>
   
 
 
@@ -279,7 +275,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.melonydi.cn/how-to-install-apache-tomcat-8-on-centos-7/">
+    <link itemprop="mainEntityOfPage" href="http://www.melonydi.cn/linux-get-pid/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="彭启骏">
@@ -296,7 +292,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">CentOS 7上安装Apache Tomcat 8</h2>
+          <h2 class="post-title" itemprop="name headline">Bash Shell 获取进程 PID</h2>
         
 
         <div class="post-meta">
@@ -308,8 +304,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-09T12:39:15+08:00">
-                2018-12-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-17T23:50:55+08:00">
+                2018-12-17
               </time>
             
 
@@ -324,8 +320,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-12-09T13:31:14+08:00">
-                2018-12-09
+              <time title="更新于" itemprop="dateModified" datetime="2018-12-18T00:09:03+08:00">
+                2018-12-18
               </time>
             
           </span>
@@ -343,8 +339,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/安全/" itemprop="url" rel="index">
-                    <span itemprop="name">安全</span>
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
                   </a>
                 </span>
 
@@ -361,8 +357,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/how-to-install-apache-tomcat-8-on-centos-7/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/how-to-install-apache-tomcat-8-on-centos-7/" itemprop="commentsCount"></span>
+                <a href="/linux-get-pid/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/linux-get-pid/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -370,7 +366,7 @@
 
           
           
-             <span id="/how-to-install-apache-tomcat-8-on-centos-7/" class="leancloud_visitors" data-flag-title="CentOS 7上安装Apache Tomcat 8">
+             <span id="/linux-get-pid/" class="leancloud_visitors" data-flag-title="Bash Shell 获取进程 PID">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -395,7 +391,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,109
+                  751
                 </span>
               
 
@@ -411,7 +407,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5
+                  3
                 </span>
               
             </div>
@@ -432,52 +428,45 @@
       
 
       
-        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Apache Tomcat是一个Web服务器和servlet容器，用于为Java应用程序提供服务。Tomcat是Apache Software Foundation发布的Java Servlet和JavaServer Pages技术的开源实现。本教程介绍CentOS 7服务器上Tomcat 8的最新版本的基本安装和一些配置。</p>
-<h2 id="安装Java"><a href="#安装Java" class="headerlink" title="安装Java"></a>安装Java</h2><p>下载jdk 1.8 </p>
-<p><a href="https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="noopener">https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html</a></p>
-<p>执行以下安装命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> rpm -ivh jdk-8u111-linux-x64.rpm</span><br><span class="line"><span class="meta">#</span> java -version</span><br></pre></td></tr></table></figure>
-<h2 id="安装Tomcat"><a href="#安装Tomcat" class="headerlink" title="安装Tomcat"></a>安装Tomcat</h2><p><strong>下载Tomcat二进制文件</strong></p>
-<p>在 <a href="https://tomcat.apache.org/download-80.cgi" target="_blank" rel="noopener">Tomcat 8</a> 找到Tomcat8的二进制版本， 下载到software目录下， 然后解压缩到/usr下</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> wget http://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-8/v8.5.35/bin/apache-tomcat-8.5.35.tar.gz</span><br><span class="line"><span class="meta">#</span> mkdir /usr/tomcat</span><br><span class="line"><span class="meta">#</span> tar xvf apache-tomcat-8.5.35.tar.gz -C /usr/tomcat/ --strip-components=1</span><br></pre></td></tr></table></figure>
-<p><strong>安装Systemd单元文件</strong></p>
-<p>因为我们希望能够将Tomcat作为服务运行，所以我们将设置一个Tomcat Systemd单元文件。</p>
-<p>通过运行以下命令创建并打开单元文件：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> vi /etc/systemd/system/tomcat.service</span><br></pre></td></tr></table></figure>
-<p>粘贴以下脚本。您可能还想修改在以下位置指定的内存分配设置<code>CATALINA_OPTS</code>：</p>
-<p>/etc/systemd/system/tomcat.service</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> Systemd unit file for tomcat</span><br><span class="line">[Unit]</span><br><span class="line">Description=Apache Tomcat Web Application Container</span><br><span class="line">After=syslog.target network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=forking</span><br><span class="line"></span><br><span class="line">Environment=JAVA_HOME=/usr/java/jdk1.8.0_191-amd64/jre</span><br><span class="line">Environment=CATALINA_PID=/usr/tomcat/temp/tomcat.pid</span><br><span class="line">Environment=CATALINA_HOME=/usr/tomcat</span><br><span class="line">Environment=CATALINA_BASE=/usr/tomcat</span><br><span class="line">Environment='CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC'</span><br><span class="line">Environment='JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom'</span><br><span class="line"></span><br><span class="line">ExecStart=/usr/tomcat/bin/startup.sh</span><br><span class="line">ExecStop=/bin/kill -15 $MAINPID</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>User=tomcat</span><br><span class="line"><span class="meta">#</span>Group=tomcat</span><br><span class="line">UMask=0007</span><br><span class="line">RestartSec=10</span><br><span class="line">Restart=always</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
-<p>现在重新加载Systemd以加载Tomcat单元文件：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload</span><br></pre></td></tr></table></figure>
-<p>现在，您可以使用以下<code>systemctl</code>命令启动Tomcat服务：shell</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start tomcat</span><br></pre></td></tr></table></figure>
-<p>输入以下命令检查服务是否已成功启动：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status tomcat</span><br></pre></td></tr></table></figure>
-<p>如果要启用Tomcat服务，则在服务器启动时启动，运行以下命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable tomcat</span><br></pre></td></tr></table></figure>
-<p>Tomcat尚未完全设置，但您可以通过访问您的域或IP地址，然后<code>:8080</code>在Web浏览器中访问默认的启动页面（前提8080已经开放）：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Open in web browser:</span><br><span class="line">http://server_IP_address:8080</span><br></pre></td></tr></table></figure>
-<p>除了其他信息之外，您还将看到默认的Tomcat启动页面。现在我们将深入介绍Tomcat的安装。</p>
-<h2 id="配置Tomcat-Web管理界面"><a href="#配置Tomcat-Web管理界面" class="headerlink" title="配置Tomcat Web管理界面"></a>配置Tomcat Web管理界面</h2><p>添加可以访问<code>manager-gui</code>和<code>admin-gui</code>（Tomcat附带的Web应用程序）的用户</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> vi /usr/tomcat/conf/tomcat-users.xml</span><br><span class="line">&lt;tomcat-users&gt;</span><br><span class="line">    &lt;user username="***" password="***" roles="manager-gui,admin-gui"/&gt;</span><br><span class="line">&lt;/tomcat-users&gt;</span><br></pre></td></tr></table></figure>
-<p>默认情况下，较新版本的Tomcat将对Manager和Host Manager应用程序的访问限制为来自服务器本身的连接。由于我们在远程计算机上安装，您可能希望删除或更改此限制。要更改对这些的IP地址限制，请打开相应的<code>context.xml</code>文件。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> vim /usr/tomcat/webapps/manager/META-INF/context.xml</span><br><span class="line"><span class="meta">#</span> vim /usr/tomcat/webapps/host-manager/META-INF/context.xml</span><br></pre></td></tr></table></figure>
-<p>在内部，注释掉IP地址限制以允许来自任何地方的连接。或者，如果您只允许访问来自您自己的IP地址的连接，您可以将您的公共IP地址添加到列表中：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;Context antiResourceLocking="false" privileged="true" &gt;</span><br><span class="line">  &lt;!--&lt;Valve className="org.apache.catalina.valves.RemoteAddrValve"</span><br><span class="line">         allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" /&gt;--&gt;</span><br><span class="line">&lt;/Context&gt;</span><br></pre></td></tr></table></figure>
-<p>重启Tomcat服务使得修改生效</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> systemctl restart tomcat</span><br></pre></td></tr></table></figure>
-<h2 id="访问Web界面"><a href="#访问Web界面" class="headerlink" title="访问Web界面"></a>访问Web界面</h2><p>现在Tomcat已启动并运行，让我们在Web浏览器中访问Web管理界面。您可以通过在端口8080上访问服务器的公网IP地址来执行此操作：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Open in web browser:</span><br><span class="line">http://server_IP_address:8080</span><br></pre></td></tr></table></figure>
-<p><img src="/how-to-install-apache-tomcat-8-on-centos-7/5-1.png" alt=""></p>
-<p>我们来看看Manager App，可通过链接访问或：<code>http://server_IP_address:8080/manager/html</code></p>
-<p><img src="/how-to-install-apache-tomcat-8-on-centos-7/5-2.png" alt=""></p>
-<p>Web应用程序管理器用于管理Java应用程序。您可以在此处启动，停止，重新加载，部署和取消部署。您还可以在应用程序上运行一些诊断程序（即查找内存泄漏）。最后，本页最下方提供了有关您的服务器的信息。</p>
-<p>现在让我们看看主机管理器，可通过链接访问或：<code>http://server_IP_address:8080/host-manager/html/</code></p>
-<p><img src="/how-to-install-apache-tomcat-8-on-centos-7/5-3.png" alt=""></p>
-<p>在Virtual Host Manager页面中，您可以添加虚拟主机以便为您的应用程序提供服务。</p>
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>你的Tomcat安装完成了！您现在可以自由部署自己的Java Web应用程序了！</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://www.digitalocean.com/community/tutorials/how-to-install-apache-tomcat-8-on-centos-7" target="_blank" rel="noopener">https://www.digitalocean.com/community/tutorials/how-to-install-apache-tomcat-8-on-centos-7</a></p>
-
+        <p>转载地址：<a href="http://weyo.me/pages/techs/linux-get-pid/" target="_blank" rel="noopener">http://weyo.me/pages/techs/linux-get-pid/</a></p>
+<blockquote>
+<h2 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h2><p>Linux 的交互式 Shell 与 Shell 脚本存在一定的差异，主要是由于后者存在一个独立的运行进程，因此在获取进程 pid 上二者也有所区别。</p>
+</blockquote>
+<hr>
+<h2 id="交互式-Bash-Shell-获取进程-pid"><a href="#交互式-Bash-Shell-获取进程-pid" class="headerlink" title="交互式 Bash Shell 获取进程 pid"></a>交互式 Bash Shell 获取进程 pid</h2><p>在已知进程名(<code>name</code>)的前提下，交互式 Shell 获取进程 pid 有很多种方法，典型的通过 grep 获取 pid 的方法为（这里添加 <code>-v grep</code>是为了避免匹配到 grep 进程）：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep "name" | grep -v grep | awk '&#123;print $2&#125;'</span><br></pre></td></tr></table></figure>
+<p>或者不使用 <code>grep</code>（这里名称首字母加<code>[]</code>的目的是为了避免匹配到 awk 自身的进程）：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | awk '/[n]ame/&#123;print $2&#125;'</span><br></pre></td></tr></table></figure>
+<p>如果只使用 x 参数的话则 pid 应该位于第一位：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps x | awk '/[n]ame/&#123;print $1&#125;'</span><br></pre></td></tr></table></figure>
+<p>最简单的方法是使用 <code>pgrep</code>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pgrep -f name</span><br></pre></td></tr></table></figure>
+<p>如果需要查找到 pid 之后 kill 掉该进程，还可以使用 <code>pkill</code>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pkill -f name</span><br></pre></td></tr></table></figure>
+<p>如果是可执行程序的话，可以直接使用 <code>pidof</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pidof name</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="Bash-Shell-脚本获取进程-pid"><a href="#Bash-Shell-脚本获取进程-pid" class="headerlink" title="Bash Shell 脚本获取进程 pid"></a>Bash Shell 脚本获取进程 pid</h2><h4 id="根据进程名获取进程-pid"><a href="#根据进程名获取进程-pid" class="headerlink" title="根据进程名获取进程 pid"></a>根据进程名获取进程 pid</h4><p>在使用 Shell 脚本获取进程 pid 时，如果直接使用上述命令，会出现多个 pid 结果，例如：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>! /bin/bash</span><br><span class="line"><span class="meta">#</span> process-monitor.sh</span><br><span class="line">process=$1</span><br><span class="line">pid=$(ps x | grep $process | grep -v grep | awk '&#123;print $1&#125;')</span><br><span class="line">echo $pid</span><br></pre></td></tr></table></figure>
+<p>执行 <code>process-monitor.sh</code> 会出现多个结果：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span>&gt; sh process-monitor.sh</span><br><span class="line">3036  3098  3099</span><br></pre></td></tr></table></figure>
+<p>进一步排查可以发现，多出来的几个进程实际上是子 Shell 的（临时）进程：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root      3036  2905  0 09:03 pts/1    00:00:45 /usr/java/jdk1.7.0_71/bin/java ...name</span><br><span class="line">root      4522  2905  0 16:12 pts/1    00:00:00 sh process-monitor.sh name</span><br><span class="line">root      4523  4522  0 16:12 pts/1    00:00:00 sh process-monitor.sh name</span><br></pre></td></tr></table></figure>
+<p>其中 3036 是需要查找的进程pid，而 4522、4523 就是子 Shell 的 pid。 为了避免这种情况，需要进一步明确查找条件，考虑到所要查找的是 Java 程序，就可以通过 Java 的关键字进行匹配：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>! /bin/bash</span><br><span class="line"><span class="meta">#</span> process-monitor.sh</span><br><span class="line">process=$1</span><br><span class="line">pid=$(ps -ef | grep $process | grep '/bin/java' | grep -v grep | awk '&#123;print $2&#125;')</span><br><span class="line">echo $pid</span><br></pre></td></tr></table></figure>
+<h4 id="获取-Shell-脚本自身进程-pid"><a href="#获取-Shell-脚本自身进程-pid" class="headerlink" title="获取 Shell 脚本自身进程 pid"></a>获取 Shell 脚本自身进程 pid</h4><p>这里涉及两个指令： </p>
+<ol>
+<li><code>$$</code> ：当前 Shell 进程的 pid </li>
+<li><code>$!</code> ：上一个后台进程的 pid 可以使用这两个指令来获取相应的进程 pid。例如，如果需要获取某个正在执行的进程的 pid（并写入指定的文件）：</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">myCommand &amp;&amp; pid=$!</span><br><span class="line">myCommand &amp; echo $! &gt;/path/to/pid.file</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意，在脚本中执行 <code>$!</code> 只会显示子 Shell 的后台进程 pid，如果子 Shell 先前没有启动后台进程，则没有输出。</p>
+</blockquote>
+<hr>
+<h2 id="查看指定进程是否存在"><a href="#查看指定进程是否存在" class="headerlink" title="查看指定进程是否存在"></a>查看指定进程是否存在</h2><p>在获取到 pid 之后，还可以根据  </p>
+<p> 查看对应的进程是否存在（运行），这个方法也可以用于 kill 指定的进程。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if ps -p $PID &gt; /dev/null</span><br><span class="line">then</span><br><span class="line">   echo "$PID is running"</span><br><span class="line"><span class="meta">   #</span> Do something knowing the pid exists, i.e. the process with $PID is running</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -497,7 +486,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://www.melonydi.cn/how-to-install-apache-tomcat-8-on-centos-7/" title="CentOS 7上安装Apache Tomcat 8">http://www.melonydi.cn/how-to-install-apache-tomcat-8-on-centos-7/</a>
+    <a href="http://www.melonydi.cn/linux-get-pid/" title="Bash Shell 获取进程 PID">http://www.melonydi.cn/linux-get-pid/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -512,9 +501,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/翻译/" rel="tag"># 翻译</a>
+            <a href="/tags/转载/" rel="tag"># 转载</a>
           
-            <a href="/tags/软件安装/" rel="tag"># 软件安装</a>
+            <a href="/tags/Shell/" rel="tag"># Shell</a>
           
         </div>
       
@@ -542,8 +531,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/jsse-ssl/" rel="next" title="Java-JSSE-SSL/TLS编程代码实例-双向认证">
-                <i class="fa fa-chevron-left"></i> Java-JSSE-SSL/TLS编程代码实例-双向认证
+              <a href="/linux-cmd/" rel="next" title="（转）grep命令">
+                <i class="fa fa-chevron-left"></i> （转）grep命令
               </a>
             
           </div>
@@ -552,8 +541,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/tomcat-ssl-two-way-auth/" rel="prev" title="java tomcat 搭建SSL双向认证以及httpclient代码">
-                java tomcat 搭建SSL双向认证以及httpclient代码 <i class="fa fa-chevron-right"></i>
+              <a href="/jidl-example/" rel="prev" title="Java IDL：一个“Hello World”程序">
+                Java IDL：一个“Hello World”程序 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -731,7 +720,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Java"><span class="nav-number">2.</span> <span class="nav-text">安装Java</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Tomcat"><span class="nav-number">3.</span> <span class="nav-text">安装Tomcat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置Tomcat-Web管理界面"><span class="nav-number">4.</span> <span class="nav-text">配置Tomcat Web管理界面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#访问Web界面"><span class="nav-number">5.</span> <span class="nav-text">访问Web界面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">6.</span> <span class="nav-text">最后</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">7.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#导读"><span class="nav-number">1.</span> <span class="nav-text">导读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#交互式-Bash-Shell-获取进程-pid"><span class="nav-number">2.</span> <span class="nav-text">交互式 Bash Shell 获取进程 pid</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bash-Shell-脚本获取进程-pid"><span class="nav-number">3.</span> <span class="nav-text">Bash Shell 脚本获取进程 pid</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#根据进程名获取进程-pid"><span class="nav-number">3.0.1.</span> <span class="nav-text">根据进程名获取进程 pid</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取-Shell-脚本自身进程-pid"><span class="nav-number">3.0.2.</span> <span class="nav-text">获取 Shell 脚本自身进程 pid</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看指定进程是否存在"><span class="nav-number">4.</span> <span class="nav-text">查看指定进程是否存在</span></a></li></ol></div>
             
 
           </div>

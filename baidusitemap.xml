@@ -4,6 +4,50 @@
 
     
   <url>
+    <loc>http://www.melonydi.cn/jidl-example/</loc>
+    <lastmod>2019-01-01T10:00:24.779Z</lastmod>
+    <data>
+        <display>
+        <title>Java IDL：一个“Hello World”程序</title>
+        <pubTime>2019-01-01T09:06:26.000Z</pubTime>
+        
+        <tag>IDL</tag>
+         
+        <tag>翻译</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://www.melonydi.cn/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.melonydi.cn/linux-get-pid/</loc>
+    <lastmod>2018-12-17T16:09:03.871Z</lastmod>
+    <data>
+        <display>
+        <title>Bash Shell 获取进程 PID</title>
+        <pubTime>2018-12-17T15:50:55.000Z</pubTime>
+        
+        <tag>转载</tag>
+         
+        <tag>Shell</tag>
+         
+         
+           
+             
+              <breadCrumb title="Linux" url="http://www.melonydi.cn/categories/Linux/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.melonydi.cn/linux-cmd/</loc>
     <lastmod>2018-12-10T15:36:54.794Z</lastmod>
     <data>
